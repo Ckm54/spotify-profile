@@ -1,9 +1,10 @@
+import Auth from "./pages/Auth"
 
 function App() {
 
   return (
     <div>
-      <p>Hello</p>
+      <Auth />
     </div>
   )
 }
