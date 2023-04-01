@@ -1,19 +1,31 @@
+import '../fonts/CircularSP/CircularSpotifyText-Black.otf';
+import { extendTheme } from "@chakra-ui/react";
+import { Button } from "./button";
+
 const colors = {
   brand: {
-    900: "",
+    900: "#1ed760",
     800: "",
     700: "",
   },
 };
 
+const fonts = {
+  body: `'CircularSP black', sans-serif`,
+}
+
 const styles = {
-  colors,
   global: () => ({
     body: {
       bg: '#01110A',
-      color: '#fff'
+      color: '#fff',
+      FontFace: "CircularSP"
     }
   })
 }
 
-export { styles };
+const components = {
+  Button
+}
+
+export const theme = extendTheme({colors, fonts, styles, components})
