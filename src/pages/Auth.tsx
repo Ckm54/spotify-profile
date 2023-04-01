@@ -6,8 +6,8 @@ type Props = {}
 const Auth = (props: Props) => {
   return (
     <Stack justifyContent={'center'} alignItems='center' minHeight={'100vh'} minWidth='100vw'>
-      <Text>Login into spotify profile</Text>
-      <Button>Login</Button>
+      <Text fontSize={'24px'} my={4}>My spotify profile</Text>
+      <Button variant={'solid'} px={'32px'} py={'16px'}>Log into spotify</Button>
     </Stack>
   )
 }
