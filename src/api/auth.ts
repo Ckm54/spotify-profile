@@ -1,3 +1,6 @@
+import { SetterOrUpdater, useSetRecoilState } from "recoil";
+import { TokenState, UserProfile } from "../../types";
+import { tokenState } from "../atom/TokenAtom";
 
 const code = undefined;
 
@@ -40,9 +43,10 @@ const generateCodeChallenge = async (codeVerifier: string) => {
     .replace(/=+$/, "");
 };
 
-const getAccessToken = async (clientId: string, code: string): Promise<string> => {
+const getAccessToken = async (clientId: string, code: string, setAuthToken: SetterOrUpdater<TokenState>) => {
   // gets an access token
   const verifier = localStorage.getItem("verifier");
+  console.log("hereereree");
 
   const params = new URLSearchParams();
   params.append("client_id", clientId);
@@ -52,40 +56,43 @@ const getAccessToken = async (clientId: string, code: string): Promise<string> =
   params.append("code_verifier", verifier!);
 
   const result = await fetch("https://accounts.spotify.com/api/token", {
-    method: 'POST',
+    method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: params
-  });
+    body: params,
+  }).then((response) => {
+    if(!response.ok) {
+      throw new Error('HTTP status ' + response.status);
+    }
+    console.log("This is the  response", response.json());
+    return response.json();
+  })
+  .then(data => setAuthToken(data.access_token))
 
-  const { access_token } = await result.json();
-
-  return access_token;
+  return result;
 };
 
-const fetchProfile = async (token: string): Promise<any> => {
+const fetchProfile = async (token: string): Promise<UserProfile> => {
   // call web api to fetch profile data
   const result = await fetch("https://api.spotify.com/v1/me", {
-    method: 'GET',
+    method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   });
 
   return await result.json();
 };
 
-const authenticateUser = async (clientId: string) => {
+const authenticateUser = async (clientId: string, setAuthToken: SetterOrUpdater<TokenState>) => {
+  let profile: UserProfile[] = [];
+
   if (!code) {
     redirectToAuth(clientId);
   } else {
-    const accessToken = await getAccessToken(clientId, code);
-
-    console.log(accessToken);
-
-    const profile = await fetchProfile(accessToken);
-
-    console.log(profile);
+    const accessToken = await getAccessToken(clientId, code, setAuthToken);
+    // profile[0] = await fetchProfile(accessToken);
   }
+  return profile;
 };
 
 export default authenticateUser;
