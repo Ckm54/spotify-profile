@@ -1,5 +1,5 @@
 import React from "react"
-import Auth from "./pages/Auth"
+import Login from "./pages/Login"
 import Dashboard from "./pages/Dashboard";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div>
-      {auth ? <Dashboard /> : <Auth />}
+      {auth ? <Dashboard /> : <Login />}
     </div>
   )
 }
