@@ -17,9 +17,11 @@ const fonts = {
 const styles = {
   global: () => ({
     body: {
-      bg: '#01110A',
       color: '#fff',
-      FontFace: "CircularSP"
+      FontFace: "CircularSP",
+      bg: "linear-gradient(rgb(33, 44, 57), rgb(18, 30, 61) 50%, rgb(0, 0, 0))",
+      minHeight: '100vh',
+      minWidth: '100vh'
     }
   })
 }
