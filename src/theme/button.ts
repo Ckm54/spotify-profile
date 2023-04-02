@@ -2,7 +2,7 @@ import { ComponentStyleConfig } from "@chakra-ui/react";
 
 export const Button: ComponentStyleConfig = {
   baseStyle: {
-    borderRadius: "60px",
+    borderRadius: "50px",
     fontWeight: 500,
     fontFamily: `'CircularSP black', sans-serif`,
     _focus: {
@@ -14,7 +14,7 @@ export const Button: ComponentStyleConfig = {
       fontSize: "8pt",
     },
     md: {
-      fontSize: "10pt",
+      fontSize: "12pt",
     },
   },
   variants: {
@@ -26,5 +26,13 @@ export const Button: ComponentStyleConfig = {
         bg: "#19b551",
       },
     },
+    outline: {
+      color: '#fff',
+      _hover: {
+        bg: 'transparent',
+        borderColor: '#1ed760',
+        color: '#1ed760'
+      }
+    }
   },
 };

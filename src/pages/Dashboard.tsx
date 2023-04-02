@@ -1,19 +1,30 @@
 import { Button } from '@chakra-ui/button'
-import { Flex, Text } from '@chakra-ui/layout'
+import { Flex, Stack, Text } from '@chakra-ui/layout'
 import React from 'react'
-import { useRecoilValue } from 'recoil'
-import { logout } from '../api/spotify'
-import { tokenState } from '../atom/TokenAtom'
+import { UserProfile } from '../../types'
+import { getUserProfile } from '../api/apiCalls'
+import { NavBar } from '../components'
 
 type Props = {}
 
 const Dashboard = (props: Props) => {
 
+  const [userProfile, setUserProfile] = React.useState<UserProfile>()
+
+  React.useEffect(() => {
+    const getProfile = async() => {
+      return await getUserProfile();
+    }
+    const userProfile: UserProfile = getProfile();
+
+    setUserProfile(userProfile)
+  }, []);
+
   return (
-    <Flex>
-      <Text>Dashboard</Text>
-      <Button onClick={logout}>Logout</Button>
-    </Flex>
+    <Stack>
+      <NavBar />
+      <Text>Dashboard {userProfile?.display_name}</Text>
+    </Stack>
   )
 }
 
