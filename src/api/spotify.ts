@@ -17,7 +17,7 @@ const getLocalRefreshToken = () => window.localStorage.getItem('spotify_refresh_
 // refresh token
 const refreshAccessToken = async() => {
   try {
-    const { data } = await axios.get(`/refresh_token?refresh_token=${getLocalRefreshToken()}`);
+    const { data } = await axios.get(`http://localhost:8080/refresh_token?refresh_token=${getLocalRefreshToken()}`);
     const { access_token } = data;
 
     setLocalAccessToken(access_token);
@@ -32,5 +32,37 @@ const refreshAccessToken = async() => {
 export const getAccessToken = () => {
   const { error, access_token, refresh_token } = getHashParams();
   
+  if(error) {
+    console.error(error);
+    refreshAccessToken();
+  }
+
+  // if token has expired refresh token
+  const storedTime: any = getTokenTimestamp();
+  if(Date.now() - storedTime > TOKEN_EXPIRY_TIME) {
+    console.warn('access token has expired, refreshing...');
+    refreshAccessToken();
+  }
+
+  const localAccessToken = getLocalAccessToken();
+
+  // if there is no access token in local storage, set it and retutn access_token from params
+  if((!localAccessToken || localAccessToken === 'undefined') && access_token) {
+    setLocalAccessToken(access_token);
+    setLocalRefreshToken(refresh_token);
+    return access_token;
+  }
+
+  return localAccessToken;
+}
+
+export const token = getAccessToken();
+
+export const logout = () => {
+  window.localStorage.removeItem('spotify_token_timestamp');
+  window.localStorage.removeItem('spotify_access_token');
+  window.localStorage.removeItem('spotify_refresh_token');
+  window.location.reload();
+  window.location.replace('/');
 }
 
