@@ -1,4 +1,4 @@
-const clientID = "client id";
+
 const code = undefined;
 
 const redirectToAuth = async (clientId: string) => {
@@ -64,6 +64,14 @@ const getAccessToken = async (clientId: string, code: string): Promise<string> =
 
 const fetchProfile = async (token: string): Promise<any> => {
   // call web api to fetch profile data
+  const result = await fetch("https://api.spotify.com/v1/me", {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return await result.json();
 };
 
 const authenticateUser = async (clientId: string) => {
