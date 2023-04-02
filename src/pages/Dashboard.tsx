@@ -1,16 +1,19 @@
+import { Button } from '@chakra-ui/button'
+import { Flex, Text } from '@chakra-ui/layout'
 import React from 'react'
 import { useRecoilValue } from 'recoil'
+import { logout } from '../api/spotify'
 import { tokenState } from '../atom/TokenAtom'
 
 type Props = {}
 
 const Dashboard = (props: Props) => {
 
-  const authToken = useRecoilValue(tokenState);
-
-  console.log('auth token', authToken)
   return (
-    <div>Dashboard</div>
+    <Flex>
+      <Text>Dashboard</Text>
+      <Button onClick={logout}>Logout</Button>
+    </Flex>
   )
 }
 
