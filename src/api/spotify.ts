@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { getHashParams } from "../utils";
 
 const TOKEN_EXPIRY_TIME = 3600 * 1000; // 1 hour in milliseconds
 
@@ -17,9 +17,20 @@ const getLocalRefreshToken = () => window.localStorage.getItem('spotify_refresh_
 // refresh token
 const refreshAccessToken = async() => {
   try {
-    const { data } = await axios.get('')
+    const { data } = await axios.get(`/refresh_token?refresh_token=${getLocalRefreshToken()}`);
+    const { access_token } = data;
+
+    setLocalAccessToken(access_token);
+    window.location.reload();
+    return;
   } catch (error) {
-    
+    console.error(error)
   }
+};
+
+// Get access token off query params (called on application init)
+export const getAccessToken = () => {
+  const { error, access_token, refresh_token } = getHashParams();
+  
 }
 

@@ -1,6 +1,6 @@
 // get query params from the window'w URL
 export const getHashParams = () => {
-  const hashParams = {};
+  const hashParams: any = {};
   let e: string[] | null;
   const regex = /([^&;=]+)=?([^&;]*)/g;
   const query = window.location.hash.substring(1);
