@@ -1,22 +1,19 @@
 import React from "react"
 import Login from "./pages/Login"
 import Dashboard from "./pages/Dashboard";
+import { token } from "./api/spotify";
 
 function App() {
 
-  const [auth, setAuth] = React.useState<boolean>(false);
+  const [accessToken, setAccessToken] = React.useState<string>('');
 
   React.useEffect(() => {
-    const verifier = window.localStorage.getItem('verifier');
-    if(verifier) {
-      console.log(verifier)
-      setAuth(true)
-    }
-  })
+    setAccessToken(token);
+  }, []);
 
   return (
     <div>
-      {auth ? <Dashboard /> : <Login />}
+      {accessToken ? <Dashboard /> : <Login />}
     </div>
   )
 }
