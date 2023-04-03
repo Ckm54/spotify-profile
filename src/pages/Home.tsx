@@ -6,6 +6,7 @@ import { UserProfile } from '../../types'
 import { getUserProfile } from '../api/apiCalls'
 import { userProfileState } from '../atom/UserDataAtom'
 import { Dashboard, NavBar } from '../components'
+import Layout from '../components/Layout/Layout'
 
 type Props = {}
 
@@ -20,10 +21,7 @@ const Home = (props: Props) => {
   })
 
   return (
-    <Stack>
-      <NavBar />
-      <Dashboard />
-    </Stack>
+    <Layout children={<Dashboard />} />
   )
 }
 

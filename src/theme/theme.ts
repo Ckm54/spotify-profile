@@ -5,7 +5,7 @@ import { Button } from "./button";
 const colors = {
   brand: {
     900: "#1ed760",
-    800: "",
+    800: "gray",
     700: "",
   },
 };
@@ -21,7 +21,7 @@ const styles = {
       FontFace: "CircularSP",
       bg: "linear-gradient(rgb(33, 44, 57), rgb(18, 30, 61) 50%, rgb(0, 0, 0))",
       minHeight: '100vh',
-      minWidth: '100vh'
+      minWidth: '100vw'
     }
   })
 }

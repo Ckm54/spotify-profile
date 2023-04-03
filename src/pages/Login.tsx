@@ -17,6 +17,7 @@ const Login = (props: Props) => {
 
   return (
     <Stack
+      as={'section'}
       justifyContent={"center"}
       alignItems="center"
       minHeight={"100vh"}

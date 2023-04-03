@@ -1,16 +1,14 @@
-import { Button } from "@chakra-ui/button";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/image";
-import { Box, Flex, Stack, Text } from "@chakra-ui/layout";
+import { Flex, Stack, Text } from "@chakra-ui/layout";
 import {
   Avatar,
+  Icon,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  Icon,
 } from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
-import React from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 import { RxDashboard } from "react-icons/rx";
 import { useRecoilState } from "recoil";
@@ -24,7 +22,16 @@ const NavBar = (props: Props) => {
 
   return (
     <nav>
-      <Flex justifyContent={"space-between"} py={2} bg="#000" px={"32px"}>
+      <Flex
+        justifyContent={"space-between"}
+        py={2}
+        bg="#000"
+        px={{base: '8px', md: "32px"}}
+        position="fixed"
+        zIndex={10}
+        as={"header"}
+        w="100%"
+      >
         <Flex
           justifyContent={"center"}
           alignItems="center"
@@ -32,7 +39,7 @@ const NavBar = (props: Props) => {
           cursor="pointer"
         >
           <Image src="../../../public/spotify-white.png" alt="spotify-logo" />
-          <Text color={"#fff"} fontWeight={600} fontSize={"18pt"}>
+          <Text color={"#fff"} fontWeight={600} fontSize={{ md: "18pt" }}>
             SpotifyProfile
           </Text>
         </Flex>
@@ -41,7 +48,7 @@ const NavBar = (props: Props) => {
             // borderWidth={"0.13rem"}
             transition="all 0.2s"
             // borderRadius={50}
-            px={4}
+            px={{md: 4}}
             py={1}
             _hover={{ color: "brand.900", borderColor: "brand.900" }}
             _expanded={{ color: "brand.900", borderColor: "brand.900" }}
@@ -57,8 +64,11 @@ const NavBar = (props: Props) => {
                 width={12}
                 borderWidth={2}
               />
-              <Text fontWeight={600}>{userData.display_name}</Text>
+              <Text fontWeight={600} display={{ base: "none", md: "unset" }}>
+                {userData.display_name}
+              </Text>
               <ChevronDownIcon
+                display={{ base: "none", md: "unset" }}
                 height={30}
                 width={30}
                 borderColor="brand.900"
