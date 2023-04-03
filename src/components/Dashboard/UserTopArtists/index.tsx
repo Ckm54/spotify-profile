@@ -19,11 +19,16 @@ const UserTopArtists = (props: Props) => {
   if (isLoading) return <Text>Loading...</Text>;
 
   return (
-    <Box mt={4} minW='100%' bg='blackAlpha.100' px={4}>
-      <Text color={"#fff"} fontWeight={600} my={8}>
-        Top Artists
-      </Text>
-      <Flex justifyContent={'space-evenly'} flexWrap={'wrap'}>
+    <Box mt={4} minW="100%" bg="blackAlpha.100" px={4}>
+      <Flex my={8} justifyContent={"space-between"} alignItems="center" px={5}>
+        <Text color={"#fff"} fontWeight={600}>
+          Top Artists
+        </Text>
+        <Text color="brand.600" cursor="pointer" _hover={{ color: "#fff" }}>
+          View all
+        </Text>
+      </Flex>
+      <Flex justifyContent={"space-evenly"} flexWrap={"wrap"}>
         {userTopArtists?.items?.map((artistProfile: TopArtistProfile) => (
           <Artist artistProfileInfo={artistProfile} key={artistProfile.id} />
         ))}
