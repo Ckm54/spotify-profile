@@ -24,7 +24,7 @@ const NavBar = (props: Props) => {
 
   return (
     <nav>
-      <Flex justifyContent={"space-between"} py={4} bg="#000" px={"32px"}>
+      <Flex justifyContent={"space-between"} py={2} bg="#000" px={"32px"}>
         <Flex
           justifyContent={"center"}
           alignItems="center"
@@ -38,9 +38,9 @@ const NavBar = (props: Props) => {
         </Flex>
         <Menu>
           <MenuButton
-            borderWidth={"0.13rem"}
+            // borderWidth={"0.13rem"}
             transition="all 0.2s"
-            borderRadius={50}
+            // borderRadius={50}
             px={4}
             py={1}
             _hover={{ color: "brand.900", borderColor: "brand.900" }}
@@ -51,19 +51,31 @@ const NavBar = (props: Props) => {
               justifyContent="center"
               alignItems={"center"}
             >
-              <Avatar src={userData.images[0]?.url} height={10} width={10} />
-              <Text>{userData.display_name}</Text>
-              <ChevronDownIcon height={30} width={30} />
+              <Avatar
+                src={userData.images[0]?.url}
+                height={12}
+                width={12}
+                borderWidth={2}
+              />
+              <Text fontWeight={600}>{userData.display_name}</Text>
+              <ChevronDownIcon
+                height={30}
+                width={30}
+                borderColor="brand.900"
+                borderWidth={2}
+                borderRadius={50}
+              />
             </Stack>
           </MenuButton>
-          <MenuList borderWidth={0} bg={"#000"}>
-            <MenuItem bg="#000" _hover={{ color: "brand.900" }}>
+          <MenuList borderWidth={0} bg={"#000"} py={4}>
+            <MenuItem bg="#000" _hover={{ color: "brand.900" }} mt={2}>
               <Flex alignItems={"center"} gap={2}>
                 <Icon as={RxDashboard} height={5} width={5} />
                 <Text>Dashboard</Text>
               </Flex>
             </MenuItem>
             <MenuItem
+              mt={2}
               bg="#000"
               onClick={logout}
               _hover={{ color: "brand.900" }}
