@@ -19,7 +19,6 @@ const UserProfileData = (props: Props) => {
   const getColor = async () => {
     try {
       const response = await fac.getColorAsync(userData.images[0]?.url);
-      console.log(response);
       if (response) {
         return response;
       }

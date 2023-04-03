@@ -1,13 +1,16 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
+import UserTopArtists from "./UserTopArtists";
 import UserProfileData from "./UserProfileData";
 
 type Props = {};
 
 const Dashboard = (props: Props) => {
-
   return (
-    <Box minW={'100vw'}>
+    <Box maxW={"100vw"}>
       <UserProfileData />
+      <Stack position={'relative'}>
+        <UserTopArtists />
+      </Stack>
     </Box>
   );
 };

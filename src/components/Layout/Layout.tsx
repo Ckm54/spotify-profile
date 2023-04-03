@@ -136,7 +136,7 @@ const Layout = ({ children }: LayoutProps) => {
             </Flex>
           </Stack>
         </Stack>
-        <Box as="main" ml={{ base: 0, md: 200 }} width={"100"}>
+        <Box as="main" ml={{ base: 0, md: 200 }} width={"100%"}>
           {children}
         </Box>
       </Box>

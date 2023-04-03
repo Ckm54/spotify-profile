@@ -30,7 +30,7 @@ const NavBar = (props: Props) => {
         position="fixed"
         zIndex={10}
         as={"header"}
-        w="100%"
+        w="100vw"
       >
         <Flex
           justifyContent={"center"}
