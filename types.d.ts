@@ -31,7 +31,7 @@ export interface ArtistsFollowed {
 }
 
 export interface Artists {
-  items:   Item[];
+  items:   FollowedArtist[];
   next:    string;
   total:   number;
   cursors: Cursors;
@@ -43,7 +43,7 @@ export interface Cursors {
   after: string;
 }
 
-export interface Item {
+export interface FollowedArtist {
   external_urls: ExternalUrls;
   followers:     Followers;
   genres:        string[];
@@ -173,4 +173,57 @@ export interface ExternalIDS {
 
 export enum Type {
   Artist = "artist",
+}
+
+
+// *PLAYLISTS
+export interface Playlists {
+  href:     string;
+  items:    Playlist[];
+  limit:    number;
+  next:     null;
+  offset:   number;
+  previous: null;
+  total:    number;
+}
+
+export interface Playlist {
+  collaborative: boolean;
+  description:   string;
+  external_urls: ExternalUrls;
+  href:          string;
+  id:            string;
+  images:        PlaylistImage[];
+  name:          string;
+  owner:         Owner;
+  primary_color: null;
+  public:        boolean;
+  snapshot_id:   string;
+  tracks:        Tracks;
+  type:          string;
+  uri:           string;
+}
+
+export interface ExternalUrls {
+  spotify: string;
+}
+
+export interface PlaylistImage {
+  height: number | null;
+  url:    string;
+  width:  number | null;
+}
+
+export interface Owner {
+  display_name:  string;
+  external_urls: ExternalUrls;
+  href:          string;
+  id:            string;
+  type:          string;
+  uri:           string;
+}
+
+export interface Tracks {
+  href:  string;
+  total: number;
 }
