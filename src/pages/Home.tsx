@@ -17,7 +17,7 @@ const Home = (props: Props) => {
   const setArtistsFollowed = useSetRecoilState(userFollowedArtistsState);
 
   const {} = useQuery('userProfile', () => getUserProfile(), {
-    onSuccess: (data: UserProfile) => {
+    onSuccess: async (data: UserProfile) => {
       setUserProfileState(data);
     }
   });

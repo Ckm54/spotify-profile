@@ -15,7 +15,7 @@ const TrackInfo = ({ track, index }: TrackInfoProps) => {
   return (
     <Box
       cursor="pointer"
-      _hover={{ backgroundColor: "gray.800" }}
+      _hover={{ backgroundColor: "gray.700" }}
       py={2}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
@@ -30,7 +30,7 @@ const TrackInfo = ({ track, index }: TrackInfoProps) => {
             alt={track.name}
           />
           <Box>
-            <Text fontSize={'0.975rem'}>{track.name}</Text>
+            <Text fontSize={{base: '10pt', md: '0.975rem'}}>{track.name}</Text>
             <Flex gap={2}>
               {track.explicit && (
                 <Text
@@ -62,7 +62,7 @@ const TrackInfo = ({ track, index }: TrackInfoProps) => {
             </Flex>
           </Box>
         </Flex>
-        <Text flex={1} justifyContent={"flex-start"} fontSize='0.875rem' _hover={{ textDecoration: 'underline'}}>
+        <Text display={{ base: 'none', md: 'unset'}} flex={1} justifyContent={"flex-start"} fontSize='0.875rem' _hover={{ textDecoration: 'underline'}}>
           {track.album.name}
         </Text>
         <Text justifyContent={"flex-end"} fontSize={'0.875rem'}>

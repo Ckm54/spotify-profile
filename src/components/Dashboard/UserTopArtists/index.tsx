@@ -30,7 +30,7 @@ const UserTopArtists = (props: Props) => {
       </Flex>
       <Flex justifyContent={"space-evenly"} flexWrap={"wrap"}>
         {userTopArtists?.items?.map((artistProfile: TopArtistProfile) => (
-          <Artist artistProfileInfo={artistProfile} key={artistProfile.id} />
+          <Artist artistProfileInfo={artistProfile} key={artistProfile.id} withHover={true} />
         ))}
       </Flex>
     </Box>

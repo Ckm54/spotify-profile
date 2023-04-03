@@ -5,9 +5,10 @@ import { TopArtistProfile } from "../../../../types";
 
 type ArtistProps = {
   artistProfileInfo: TopArtistProfile;
+  withHover: boolean;
 };
 
-const Artist = ({ artistProfileInfo }: ArtistProps) => {
+const Artist = ({ artistProfileInfo, withHover }: ArtistProps) => {
 
   const [isHovering, setIsHovering] = React.useState<boolean>(false);
 
@@ -22,8 +23,8 @@ const Artist = ({ artistProfileInfo }: ArtistProps) => {
       _hover={{
         backgroundColor: "blackAlpha.500",
       }}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
+      onMouseEnter={() => withHover && setIsHovering(true)}
+      onMouseLeave={() => withHover && setIsHovering(false)}
       mb={8}
     >
       <Box position={"relative"}>
