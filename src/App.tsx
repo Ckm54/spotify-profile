@@ -1,8 +1,7 @@
 import React from "react"
 import Login from "./pages/Login"
-import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
 import { token } from "./api/spotify";
-import { Container } from "@chakra-ui/layout";
 
 function App() {
 
@@ -14,7 +13,7 @@ function App() {
 
   return (
     <>
-      {accessToken ? <Dashboard /> : <Login />}
+      {accessToken ? <Home /> : <Login />}
     </>
   )
 }
