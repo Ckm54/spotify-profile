@@ -25,7 +25,7 @@ const UserTopTracks = (props: Props) => {
 
       {
         topTracks?.items?.map((track: Track, index: number) => (
-          <TrackInfo track={track} index={index + 1}  key={track.id} />
+          <TrackInfo track={track} index={index + 1} key={track.id} />
         ))
       }
     </Box>
