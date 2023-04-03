@@ -52,6 +52,7 @@ const Layout = ({ children }: LayoutProps) => {
             >
               {navLinks.main.map((link, index: number) => (
                 <Flex
+                  key={index}
                   direction={{ base: "column", md: "row" }}
                   justifyContent={"center"}
                   alignItems="center"

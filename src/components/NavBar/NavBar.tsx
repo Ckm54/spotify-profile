@@ -24,7 +24,7 @@ const NavBar = (props: Props) => {
     <nav>
       <Flex
         justifyContent={"space-between"}
-        py={2}
+        py={3}
         bg="#000"
         px={{base: '8px', md: "32px"}}
         position="fixed"
