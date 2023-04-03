@@ -28,6 +28,7 @@ export const Button: ComponentStyleConfig = {
     },
     outline: {
       color: '#fff',
+      borderWidth: 2,
       _hover: {
         bg: 'transparent',
         borderColor: '#1ed760',
