@@ -1,7 +1,7 @@
 // CALLING SPOTIFY API ENDPOINTS
 
 import axios from "axios";
-import { ArtistsFollowed, TopArtists, TopTracks, UserProfile } from "../../types";
+import { ArtistsFollowed, Playlists, TopArtists, TopTracks, UserProfile } from "../../types";
 import { getAccessToken } from "./spotify";
 
 const token = getAccessToken();
@@ -58,6 +58,20 @@ export const getTopTracks = async() => {
   const response = await axios.get(`${BASE_URL}/me/top/tracks?limit=5`, { headers });
   if(response.status === 200) {
     const data: TopTracks = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+}
+
+/**
+ * Get user's playlists
+ * https://developer.spotify.com/documentation/web-api/reference/get-list-users-playlists
+ */
+export const getUserPlaylists = async(userId: string) => {
+  const response = await axios.get(`${BASE_URL}/users/${userId}/playlists`, { headers });
+  if(response.status === 200) {
+    const data: Playlists = response.data;
     return data;
   } else {
     return response.statusText;
