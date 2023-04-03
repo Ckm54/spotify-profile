@@ -1,7 +1,7 @@
 // CALLING SPOTIFY API ENDPOINTS
 
 import axios from "axios";
-import { ArtistsFollowed, TopArtists, UserProfile } from "../../types";
+import { ArtistsFollowed, TopArtists, TopTracks, UserProfile } from "../../types";
 import { getAccessToken } from "./spotify";
 
 const token = getAccessToken();
@@ -48,6 +48,16 @@ export const getTopArtists = async() => {
   const response = await axios.get(`${BASE_URL}/me/top/artists?limit=8`, { headers });
   if(response.status === 200) {
     const data: TopArtists = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+}
+
+export const getTopTracks = async() => {
+  const response = await axios.get(`${BASE_URL}/me/top/tracks?limit=5`, { headers });
+  if(response.status === 200) {
+    const data: TopTracks = response.data;
     return data;
   } else {
     return response.statusText;

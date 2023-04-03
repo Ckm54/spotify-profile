@@ -24,6 +24,7 @@ const Artist = ({ artistProfileInfo }: ArtistProps) => {
       }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      mb={8}
     >
       <Box position={"relative"}>
         <Image
@@ -49,8 +50,8 @@ const Artist = ({ artistProfileInfo }: ArtistProps) => {
           <Icon as={TfiInfoAlt} color='brand.700' h={6} w={6} />
         </Box>
       </Box>
-      <Text>{artistProfileInfo.name}</Text>
-      <Text textTransform={"capitalize"} fontWeight={600}>
+      <Text fontSize={'11pt'}>{artistProfileInfo.name}</Text>
+      <Text textTransform={"capitalize"} fontSize='10pt' fontWeight={600}>
         {artistProfileInfo.type}
       </Text>
     </Stack>

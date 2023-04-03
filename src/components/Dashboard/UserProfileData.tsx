@@ -39,7 +39,7 @@ const UserProfileData = (props: Props) => {
         minWidth="100%"
         minH={"50vh"}
       />
-      <Flex gap={4} pt={10} px={5} position="relative">
+      <Flex gap={4} pt={10} px={5} position="relative" alignItems={'center'}>
         <Image
           src={userData.images[0]?.url}
           h={40}

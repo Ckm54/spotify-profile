@@ -19,12 +19,12 @@ const UserTopArtists = (props: Props) => {
   if (isLoading) return <Text>Loading...</Text>;
 
   return (
-    <Box mt={4} px={4} minW='100%' bg='blackAlpha.100'>
+    <Box mt={4} minW='100%' bg='blackAlpha.100' px={4}>
       <Text color={"#fff"} fontWeight={600} my={8}>
-        Top Artists this month
+        Top Artists
       </Text>
-      <Flex justifyContent={'space-between'}>
-        {userTopArtists?.items.map((artistProfile: TopArtistProfile) => (
+      <Flex justifyContent={'space-evenly'} flexWrap={'wrap'}>
+        {userTopArtists?.items?.map((artistProfile: TopArtistProfile) => (
           <Artist artistProfileInfo={artistProfile} key={artistProfile.id} />
         ))}
       </Flex>
