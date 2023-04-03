@@ -1,10 +1,11 @@
 // CALLING SPOTIFY API ENDPOINTS
 
 import axios from "axios";
-import { UserProfile } from "../../types";
+import { ArtistsFollowed, UserProfile } from "../../types";
 import { getAccessToken } from "./spotify";
 
 const token = getAccessToken();
+const BASE_URL = 'https://api.spotify.com/v1';
 
 const headers = {
   Authorization: `Bearer ${token}`,
@@ -16,9 +17,23 @@ const headers = {
  * https://developer.spotify.com/documentation/web-api/reference/users-profile/get-current-users-profile/
  */
 export const getUserProfile = async () =>{
-  const response = await axios.get('https://api.spotify.com/v1/me', { headers });
+  const response = await axios.get(`${BASE_URL}/me`, { headers });
   if(response.status === 200) {
     const data: UserProfile = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+}
+
+/**
+ * Get current user's followed artists
+ * https://developer.spotify.com/documentation/web-api/reference/get-followed
+*/ 
+export const getFollowing = async () => {
+  const response = await axios.get(`${BASE_URL}/me/following?type=artist`, { headers });
+  if(response.status === 200) {
+    const data: ArtistsFollowed = response.data;
     return data;
   } else {
     return response.statusText;
