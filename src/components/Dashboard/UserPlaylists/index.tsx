@@ -12,27 +12,14 @@ import PlaylistCard from "./PlaylistCard";
 type Props = {};
 
 const UserPlaylists = (props: Props) => {
-  const [userInfo] = useRecoilState(userProfileState);
-  const [userPlaylists, setUserPlaylists] = useRecoilState(userPlaylistsState);
+  const [userPlaylists] = useRecoilState(userPlaylistsState);
   const navigate = useNavigate();
-  
-  const userId = userInfo?.id
-
-  const { isLoading } = useQuery("getPlaylists", () => getUserPlaylists(userId), {
-    onSuccess: (data: Playlists) => {
-      setUserPlaylists(data);
-    },
-    enabled: !!userId
-  });
 
   // React.useEffect(() => {
   //   if(userInfo.id !== '') {
   //     queryClient.refetchQueries({ queryKey: ['getPlaylists']})
   //   }
   // }, [userInfo]);
-
-
-  if (isLoading) return <Text>Loading...</Text>;
 
   return (
     <Box flex={1} px={{base: 8, md: 0}}>

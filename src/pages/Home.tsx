@@ -2,9 +2,10 @@ import { Stack } from "@chakra-ui/layout";
 import React from "react";
 import { useQuery } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { ArtistsFollowed, UserProfile } from "../../types";
-import { getFollowing, getTopArtists, getUserProfile } from "../api/apiCalls";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { ArtistsFollowed, Playlists, UserProfile } from "../../types";
+import { getFollowing, getTopArtists, getUserPlaylists, getUserProfile } from "../api/apiCalls";
+import { userPlaylistsState } from "../atom/PlaylistsAtom";
 import { userProfileState } from "../atom/UserDataAtom";
 import { userFollowedArtistsState } from "../atom/UserFollowedArtists";
 import { Dashboard, MyPlaylists, MyRecentPlays, MyTopArtists, MyTopTracks, NavBar } from "../components";
@@ -16,6 +17,10 @@ type Props = {};
 const Home = (props: Props) => {
   const setUserProfileState = useSetRecoilState(userProfileState);
   const setArtistsFollowed = useSetRecoilState(userFollowedArtistsState);
+  const [userInfo] = useRecoilState(userProfileState);
+  const setUserPlaylists = useSetRecoilState(userPlaylistsState);
+  
+  const userId = userInfo?.id
 
   const {} = useQuery("userProfile", () => getUserProfile(), {
     onSuccess: async (data: UserProfile) => {
@@ -28,6 +33,20 @@ const Home = (props: Props) => {
       setArtistsFollowed(data);
     },
   });
+
+
+  const { isLoading } = useQuery("getPlaylists", () => getUserPlaylists(userId), {
+    onSuccess: (data: Playlists) => {
+      setUserPlaylists(data);
+    },
+    enabled: !!userId
+  });
+
+  // React.useEffect(() => {
+  //   if(userInfo.id !== '') {
+  //     queryClient.refetchQueries({ queryKey: ['getPlaylists']})
+  //   }
+  // }, [userInfo]);
 
   const router = createBrowserRouter([
     {

@@ -15,7 +15,9 @@ const Artist = ({ artistProfileInfo, withHover, imgSize }: ArtistProps) => {
 
   return (
     <Stack
-      py={10}
+      flexGrow={{base: 1}}
+      alignItems={{base: 'center', md: 'flex-start'}}
+      py={{base: 8, md: 10}}
       px={5}
       bg={"blackAlpha.300"}
       borderRadius={10}
@@ -31,9 +33,10 @@ const Artist = ({ artistProfileInfo, withHover, imgSize }: ArtistProps) => {
       <Box position={"relative"}>
         <Image
           src={artistProfileInfo.images[0]?.url}
-          height={imgSize}
-          width={imgSize}
+          height={{base: 20, md: imgSize}}
+          width={{base: 20, md: imgSize}}
           borderRadius={"50%"}
+          objectFit='cover'
         />
         <Box
           position={"absolute"}
