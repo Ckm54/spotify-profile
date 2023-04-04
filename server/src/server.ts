@@ -44,7 +44,7 @@ app.get("/login", (req: Request, res: Response) => {
   res.cookie(stateKey, state);
 
   // application requests authorization
-  const scope = "user-read-private user-read-email user-follow-read user-top-read playlist-read-private playlist-read-collaborative user-read-recently-played";
+  const scope = "user-read-private user-read-email user-follow-read user-top-read playlist-read-private playlist-read-collaborative user-read-recently-played user-follow-read";
   //  user-read-recently-played user-follow-modify playlist-modify-public";
 
   const params = new URLSearchParams();

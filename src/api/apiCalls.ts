@@ -107,3 +107,31 @@ export const getArtistProfile = async(artistId: string) => {
     return response.statusText;
   }
 }
+
+/**
+ * Get artist's profile information
+ * https://developer.spotify.com/documentation/web-api/reference/get-an-artist
+ */
+export const getArtistTopTracks = async(artistId: string) => {
+  const response = await axios.get(`${BASE_URL}/artists/${artistId}/top-tracks`, { headers });
+  if(response.status === 200) {
+    const data = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+}
+
+/**
+ * check if user follows an artist
+ * https://developer.spotify.com/documentation/web-api/reference/check-current-user-follows
+ */
+export const getIsFollowing = async(id: string) => {
+  const response = await axios.get(`${BASE_URL}/me/following/contains?type=artist&ids=${id}`, { headers });
+  if(response.status === 200) {
+    const data = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+}

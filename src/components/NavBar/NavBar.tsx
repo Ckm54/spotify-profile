@@ -25,7 +25,7 @@ const NavBar = (props: Props) => {
       <Flex
         justifyContent={"space-between"}
         py={3}
-        bg="#000"
+        bg="rgba(0, 0, 0, 0.86)"
         px={{base: '8px', md: "32px"}}
         position="fixed"
         zIndex={10}
