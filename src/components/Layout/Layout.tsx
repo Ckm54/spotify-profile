@@ -4,26 +4,20 @@ import { AiFillGithub, AiOutlineHome, AiOutlineLogout } from "react-icons/ai";
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import { RxCounterClockwiseClock } from "react-icons/rx";
 import { TbMicrophone2, TbPlaylist } from "react-icons/tb";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { logout } from "../../api/spotify";
 import { userProfileState } from "../../atom/UserDataAtom";
 import NavBar from "../NavBar/NavBar";
 
 type LayoutProps = {
-  children: React.ReactNode;
+  errorElement?: React.ReactNode;
 };
 
-const Layout = ({ children }: LayoutProps) => {
-  const [activeLink, setActiveLink] = React.useState<string>("");
+const Layout = ({ errorElement }: LayoutProps) => {
   const [userInfo] = useRecoilState(userProfileState);
-
-  React.useEffect(() => {
-    setActiveLink("home");
-  }, []);
-
-  const handleNavigate = (title: string) => {
-    setActiveLink(title);
-  };
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <>
@@ -59,22 +53,22 @@ const Layout = ({ children }: LayoutProps) => {
                   gap={2}
                   borderLeftWidth={{ md: 4 }}
                   borderLeftColor={{
-                    md: activeLink === link.title ? "brand.900" : "transparent",
+                    md: location.pathname === link.href ? "brand.900" : "transparent",
                   }}
                   borderBottomWidth={{ base: 4, md: 0 }}
                   borderBottomColor={{
                     base:
-                      activeLink === link.title ? "brand.900" : "transparent",
+                      location.pathname === link.href ? "brand.900" : "transparent",
                     md: "transparent",
                   }}
-                  color={activeLink === link.title ? "brand.900" : "unset"}
+                  color={location.pathname === link.href ? "brand.900" : "unset"}
                   height="60px"
                   px={2}
                   cursor="pointer"
                   _hover={{
                     color: "brand.900",
                   }}
-                  onClick={() => handleNavigate(link.title)}
+                  onClick={() => navigate(link.href)}
                 >
                   <Icon
                     as={link.icon}
@@ -92,10 +86,10 @@ const Layout = ({ children }: LayoutProps) => {
             </Flex>
             <Stack display={{ base: "none", md: "unset" }} px={2}>
               <Divider />
-              <Text color={'gray.300'}>Top Albums:</Text>
+              <Text color={"gray.300"}>Top Albums:</Text>
               <Text>Album 1:</Text>
               <Divider />
-              <Text color={'gray.300'}>Top Playlists:</Text>
+              <Text color={"gray.300"}>Top Playlists:</Text>
               <Text>Playlist 1</Text>
             </Stack>
           </Stack>
@@ -112,7 +106,12 @@ const Layout = ({ children }: LayoutProps) => {
                 {userInfo.display_name}
               </Text>
             </Flex>
-            <Flex gap={2} cursor="pointer" _hover={{ color: "blue.500" }} py={4}>
+            <Flex
+              gap={2}
+              cursor="pointer"
+              _hover={{ color: "blue.500" }}
+              py={4}
+            >
               <Icon
                 as={AiFillGithub}
                 w={{ base: 5, md: 6 }}
@@ -137,7 +136,7 @@ const Layout = ({ children }: LayoutProps) => {
           </Stack>
         </Stack>
         <Box as="main" ml={{ base: 0, md: 200 }} width={"100%"}>
-          {children}
+          {errorElement ? errorElement : <Outlet />}
         </Box>
       </Box>
     </>
