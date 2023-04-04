@@ -46,7 +46,7 @@ const generateCodeChallenge = async (codeVerifier: string) => {
 const getAccessToken = async (clientId: string, code: string, setAuthToken: SetterOrUpdater<TokenState>) => {
   // gets an access token
   const verifier = localStorage.getItem("verifier");
-  console.log("hereereree");
+  // console.log("hereereree");
 
   const params = new URLSearchParams();
   params.append("client_id", clientId);
@@ -63,7 +63,7 @@ const getAccessToken = async (clientId: string, code: string, setAuthToken: Sett
     if(!response.ok) {
       throw new Error('HTTP status ' + response.status);
     }
-    console.log("This is the  response", response.json());
+    // console.log("This is the  response", response.json());
     return response.json();
   })
   .then(data => setAuthToken(data.access_token))

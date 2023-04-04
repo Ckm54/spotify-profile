@@ -18,7 +18,6 @@ const UserPlaylists = (props: Props) => {
 
   const { isLoading } = useQuery("getPlaylists", () => getUserPlaylists(userId), {
     onSuccess: (data: Playlists) => {
-      console.log("the data is", data)
       setUserPlaylists(data);
     },
     enabled: !!userId
@@ -30,7 +29,6 @@ const UserPlaylists = (props: Props) => {
   //   }
   // }, [userInfo]);
 
-  console.log(userPlaylists)
 
   if (isLoading) return <Text>Loading...</Text>;
 
