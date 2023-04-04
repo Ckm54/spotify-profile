@@ -1,6 +1,7 @@
 import { Stack } from '@chakra-ui/layout'
 import React from 'react'
 import { useQuery } from 'react-query'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { ArtistsFollowed, TopArtists, UserProfile } from '../../types'
 import { getFollowing, getTopArtists, getUserProfile } from '../api/apiCalls'
@@ -8,6 +9,7 @@ import { userProfileState } from '../atom/UserDataAtom'
 import { userFollowedArtistsState } from '../atom/UserFollowedArtists'
 import { Dashboard, NavBar } from '../components'
 import Layout from '../components/Layout/Layout'
+import ErrorPage from './ErrorPage'
 
 type Props = {}
 
@@ -27,10 +29,19 @@ const Home = (props: Props) => {
     onSuccess: (data: ArtistsFollowed) => {
       setArtistsFollowed(data)
     }
-  })
+  });
+
+  const router = createBrowserRouter([
+    {
+      path: '',
+      index: true,
+      element: <Layout children={<Dashboard />} />,
+      errorElement: <Layout children={<ErrorPage />} />,
+    }
+  ])
 
   return (
-    <Layout children={<Dashboard />} />
+    <RouterProvider router={router} />
   )
 }
 

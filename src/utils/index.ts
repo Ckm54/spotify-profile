@@ -1,3 +1,5 @@
+import { FastAverageColor } from "fast-average-color";
+
 // get query params from the window'w URL
 export const getHashParams = () => {
   const hashParams: any = {};
@@ -17,3 +19,17 @@ export const formatDurationToMinsAndSecs = (millis: number) => {
   const seconds: number = Math.floor((millis % 60000) / 1000);
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
+
+// get dominant color from profile image
+const fac = new FastAverageColor();
+
+export const getDominantColor = async (imageURL: string) => {
+  try {
+    const response = await fac.getColorAsync(imageURL);
+    if (response) {
+      return response;
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
