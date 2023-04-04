@@ -16,12 +16,6 @@ export interface UserProfile {
   uri: string;
 }
 
-interface Image {
-  url: string;
-  height: number;
-  width: number;
-}
-
 export interface TokenState {
   token: String | null;
 }
@@ -56,10 +50,6 @@ export interface FollowedArtist {
   uri:           string;
 }
 
-export interface ExternalUrls {
-  spotify: string;
-}
-
 export interface Followers {
   href:  null;
   total: number;
@@ -86,10 +76,6 @@ export interface TopArtistProfile {
   popularity:    number;
   type:          string;
   uri:           string;
-}
-
-export interface ExternalUrls {
-  spotify: string;
 }
 
 export interface Followers {
@@ -152,10 +138,6 @@ export interface Artist {
   uri:           string;
 }
 
-export interface ExternalUrls {
-  spotify: string;
-}
-
 export enum Type {
   Artist = "artist",
 }
@@ -164,15 +146,6 @@ export interface Image {
   height: number;
   url:    string;
   width:  number;
-}
-
-export interface ExternalIDS {
-  isrc: string;
-}
-
-
-export enum Type {
-  Artist = "artist",
 }
 
 
@@ -227,6 +200,93 @@ export interface Tracks {
   href:  string;
   total: number;
 }
+
+
+// **********************RECENTLY PLAYED TRACKS
+export interface RecentPlays {
+  items:   RecentTrack[];
+  next:    string;
+  cursors: PlayCursors;
+  limit:   number;
+  href:    string;
+}
+
+export interface PlayCursors {
+  after:  string;
+  before: string;
+}
+
+export interface RecentTrack {
+  track:     Track;
+  played_at: Date;
+  context:   Context;
+}
+
+export interface Context {
+  type:          ContextType;
+  external_urls: ExternalUrls;
+  href:          string;
+}
+
+export interface ExternalUrls {
+  spotify: string;
+}
+
+
+export interface Track {
+  album:             Album;
+  artists:           Artist[];
+  available_markets: string[];
+  disc_number:       number;
+  duration_ms:       number;
+  explicit:          boolean;
+  external_ids:      ExternalIDS;
+  external_urls:     ExternalUrls;
+  href:              string;
+  id:                string;
+  is_local:          boolean;
+  name:              string;
+  popularity:        number;
+  preview_url:       string;
+  track_number:      number;
+  type:              TrackType;
+  uri:               string;
+}
+
+export interface Album {
+  album_group:            AlbumGroup;
+  album_type:             AlbumGroup;
+  artists:                Artist[];
+  available_markets:      string[];
+  external_urls:          ExternalUrls;
+  href:                   string;
+  id:                     string;
+  images:                 Image[];
+  name:                   string;
+  release_date:           Date;
+  release_date_precision: ReleaseDatePrecision;
+  total_tracks:           number;
+  type:                   AlbumGroup;
+  uri:                    string;
+}
+
+export enum AlbumGroup {
+  Album = "album",
+  Single = "single",
+}
+
+export enum ReleaseDatePrecision {
+  Day = "day",
+}
+
+export interface ExternalIDS {
+  isrc: string;
+}
+
+export enum TrackType {
+  Track = "track",
+}
+
 
 
 // *************************QUERY TYPES
