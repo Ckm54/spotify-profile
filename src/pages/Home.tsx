@@ -3,11 +3,11 @@ import React from "react";
 import { useQuery } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { ArtistsFollowed, TopArtists, UserProfile } from "../../types";
+import { ArtistsFollowed, UserProfile } from "../../types";
 import { getFollowing, getTopArtists, getUserProfile } from "../api/apiCalls";
 import { userProfileState } from "../atom/UserDataAtom";
 import { userFollowedArtistsState } from "../atom/UserFollowedArtists";
-import { Dashboard, NavBar } from "../components";
+import { Dashboard, MyPlaylists, MyRecentPlays, MyTopArtists, MyTopTracks, NavBar } from "../components";
 import Layout from "../components/Layout/Layout";
 import ErrorPage from "./ErrorPage";
 
@@ -43,7 +43,19 @@ const Home = (props: Props) => {
         },
         {
           path: 'top-artists',
-          element: <ErrorPage />
+          element: <MyTopArtists />
+        },
+        {
+          path: 'top-tracks',
+          element: <MyTopTracks />
+        },
+        {
+          path: 'playlists',
+          element: <MyPlaylists />
+        },
+        {
+          path: 'recently-played',
+          element: <MyRecentPlays />
         }
       ]
     },
