@@ -96,13 +96,28 @@ const Layout = ({ errorElement }: LayoutProps) => {
             </Flex>
             <Stack display={{ base: "none", md: "unset" }} px={2}>
               <Divider />
-              <Text color={"gray.300"} fontSize={'0.875rem'} fontWeight={600}>Top 10 Playlists:</Text>
+              <Text color={"gray.300"} fontSize={"0.875rem"} fontWeight={600}>
+                Top 10 Playlists:
+              </Text>
               {userPlaylists.items.map(
                 (playlist: Playlist, index: number) =>
                   index < 10 && (
-                    <Flex gap={2} pt={1} alignItems='center'>
-                      <Image src={playlist.images[0]?.url} alt={playlist.name} height={6} borderRadius='50%' />
-                      <Text fontSize={"10pt"} noOfLines={1} color={'brand.600'}>{playlist.name}</Text>
+                    <Flex gap={2} pt={1} alignItems="center">
+                      <Image
+                        src={playlist.images[0]?.url}
+                        alt={playlist.name}
+                        height={6}
+                        borderRadius="50%"
+                      />
+                      <Text
+                        fontSize={"10pt"}
+                        noOfLines={1}
+                        color={"brand.600"}
+                        cursor="pointer"
+                        _hover={{ textDecoration: "underline" }}
+                      >
+                        {playlist.name}
+                      </Text>
                     </Flex>
                   )
               )}
