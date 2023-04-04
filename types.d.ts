@@ -83,6 +83,10 @@ export interface TopTracks {
   previous: null;
 }
 
+export interface ArtistTopTracksType {
+  tracks: Track[]
+}
+
 export interface Track {
   album:             Album;
   artists:           Artist[];
