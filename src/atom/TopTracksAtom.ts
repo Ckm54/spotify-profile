@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { RecentPlays, TopTracks } from "../../types";
+import { ArtistTopTracksType, RecentPlays, TopTracks } from "../../types";
 
 const defaultLongTermTracksState: TopTracks = {
   items: [],
@@ -22,6 +22,10 @@ const defaultRecentlyPlayedTracksState: RecentPlays = {
   href: ""
 }
 
+const defaultArtistTopTracks: ArtistTopTracksType = {
+  tracks: []
+}
+
 export const longTermTracksState = atom<TopTracks>({
   key: 'longTermTracks',
   default: defaultLongTermTracksState,
@@ -40,4 +44,9 @@ export const shortTermTracksState = atom<TopTracks>({
 export const recentlyPlayedTracksState = atom<RecentPlays>({
   key: 'recentlyPlayedTracks',
   default: defaultRecentlyPlayedTracksState,
+})
+
+export const topArtistTracksState = atom<ArtistTopTracksType>({
+  key: 'topArtistTracksState',
+  default: defaultArtistTopTracks,
 })

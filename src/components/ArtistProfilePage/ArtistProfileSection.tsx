@@ -3,8 +3,10 @@ import { FastAverageColor } from "fast-average-color";
 import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import { ArtistProfile } from "../../../types";
 import { getArtistProfile, getIsFollowing } from "../../api/apiCalls";
+import { artistNameState } from "../../atom/artistInfoAtom";
 
 type Props = {};
 
@@ -12,6 +14,7 @@ const fac = new FastAverageColor();
 
 const ArtistProfileSection = (props: Props) => {
   const [isFollowing, setIsFollowing] = React.useState<boolean>(true);
+  const setArtistNameState = useSetRecoilState(artistNameState);
   const [artistProfile, setArtistProfile] = React.useState<ArtistProfile>({
     name: "",
     external_urls: {
@@ -51,9 +54,12 @@ const ArtistProfileSection = (props: Props) => {
     getColor().then((color) => setDominantColor(color?.rgb));
   }, [getColor]);
 
-  const { isLoading } = useQuery("getArtist", () => getArtistProfile(id!), {
+  const { isLoading } = useQuery(["getArtist", id], () => getArtistProfile(id!), {
     enabled: !!id,
-    onSuccess: (data: ArtistProfile) => setArtistProfile(data),
+    onSuccess: (data: ArtistProfile) => {
+      setArtistProfile(data);
+      setArtistNameState(data.name);
+    },
   });
 
   const {} = useQuery(

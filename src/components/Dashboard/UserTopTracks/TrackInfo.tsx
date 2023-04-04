@@ -9,9 +9,10 @@ import { useNavigate } from "react-router-dom";
 type TrackInfoProps = {
   track: Track;
   index: number;
+  isArtistTracks?: boolean;
 };
 
-const TrackInfo = ({ track, index }: TrackInfoProps) => {
+const TrackInfo = ({ track, index, isArtistTracks }: TrackInfoProps) => {
   const [isHovering, setIsHovering] = React.useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -49,10 +50,10 @@ const TrackInfo = ({ track, index }: TrackInfoProps) => {
                   w="max-content"
                 />
               )}
-              {track?.artists?.map((artist) => {
+              {track?.artists?.map((artist, index) => {
                 const isNotLastTrack =
-                  track.artists[track.artists.length - 1].id !== artist.id;
-                return (
+                  track.artists[track.artists.length - 1].id !== artist.id || index !== 2;
+                if (index < 3) return (
                   <Text
                     fontSize={"10pt"}
                     color="gray.400"
@@ -80,6 +81,9 @@ const TrackInfo = ({ track, index }: TrackInfoProps) => {
           _hover={{ textDecoration: "underline" }}
         >
           {track.album.name}
+          {
+            isArtistTracks && <span style={{marginLeft: '0.7rem'}}>(Track {track.track_number})</span>
+          }
         </Text>
         <Text justifyContent={"flex-end"} fontSize={"0.875rem"}>
           {formatDurationToMinsAndSecs(track.duration_ms)}
