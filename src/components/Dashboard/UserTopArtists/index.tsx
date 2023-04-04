@@ -34,7 +34,7 @@ const UserTopArtists = (props: Props) => {
           View all
         </Text>
       </Flex>
-      <Flex justifyContent={"space-evenly"} flexWrap={"wrap"}>
+      <Flex justifyContent={"space-evenly"} gap={2} flexWrap={"nowrap"}>
         {userTopArtists?.items?.map((artistProfile: TopArtistProfile) => (
           <Artist artistProfileInfo={artistProfile} key={artistProfile.id} withHover={true} imgSize={40} />
         ))}

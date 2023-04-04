@@ -96,9 +96,21 @@ const Layout = ({ errorElement }: LayoutProps) => {
             </Flex>
             <Stack display={{ base: "none", md: "unset" }} px={2}>
               <Divider />
-              <Text color={"gray.300"} fontSize={"0.875rem"} fontWeight={600}>
-                Top 10 Playlists:
-              </Text>
+              <Flex justifyContent={'space-between'} alignItems='center'>
+                <Text color={"gray.300"} fontSize={"0.875rem"} fontWeight={600}>
+                  Top 10 Playlists:
+                </Text>
+                <Text
+                  color="brand.600"
+                  cursor="pointer"
+                  fontSize={"0.875rem"}
+                  fontWeight='semibold'
+                  _hover={{ color: "brand.900" }}
+                  onClick={() => navigate("/playlists")}
+                >
+                  View all
+                </Text>
+              </Flex>
               {userPlaylists.items.map(
                 (playlist: Playlist, index: number) =>
                   index < 10 && (

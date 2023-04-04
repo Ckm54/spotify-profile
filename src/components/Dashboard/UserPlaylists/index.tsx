@@ -41,7 +41,7 @@ const UserPlaylists = (props: Props) => {
       <Flex flexWrap={'wrap'} gap={12} justifyContent={{base: 'space-between', md: 'unset'}} >
         {userPlaylists?.items.map(
           (playlist: Playlist, index: number) =>
-            index < 5 && <PlaylistCard playlist={playlist} key={playlist.id} />
+            index < 5 && <PlaylistCard playlist={playlist} key={playlist.id} detailed={false} />
         )}
       </Flex>
     </Box>

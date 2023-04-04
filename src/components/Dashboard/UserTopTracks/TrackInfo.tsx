@@ -1,6 +1,7 @@
 import { Box, Flex, Image, Icon, Text } from "@chakra-ui/react";
 import React from "react";
 import { TfiInfoAlt } from "react-icons/tfi";
+import { BsFillExplicitFill } from "react-icons/bs";
 import { Track } from "../../../../types";
 import { formatDurationToMinsAndSecs } from "../../../utils";
 
@@ -14,6 +15,7 @@ const TrackInfo = ({ track, index }: TrackInfoProps) => {
 
   return (
     <Box
+      transition={'all .2s ease-in'}
       cursor="pointer"
       _hover={{ backgroundColor: "gray.700" }}
       py={2}
@@ -22,7 +24,11 @@ const TrackInfo = ({ track, index }: TrackInfoProps) => {
     >
       <Flex justifyContent={"space-between"} px={5} alignItems="center">
         <Flex flex={1} alignItems="center" gap={2}>
-          {isHovering ? <Icon as={TfiInfoAlt} w={5} h={5} /> : <Text fontWeight="600">{index}.</Text>}
+          {isHovering ? (
+            <Icon as={TfiInfoAlt} w={5} h={5} />
+          ) : (
+            <Text fontWeight="600">{index}.</Text>
+          )}
           <Image
             src={track.album.images[0]?.url}
             h={10}
@@ -30,19 +36,16 @@ const TrackInfo = ({ track, index }: TrackInfoProps) => {
             alt={track.name}
           />
           <Box>
-            <Text fontSize={{base: '10pt', md: '0.975rem'}}>{track.name}</Text>
-            <Flex gap={2}>
+            <Text fontSize={{ base: "10pt", md: "0.975rem" }}>
+              {track.name}
+            </Text>
+            <Flex gap={2} alignItems='center'>
               {track.explicit && (
-                <Text
-                  bg="gray.500"
-                  color="brand.700"
+                <Icon
+                  as={BsFillExplicitFill}
+                  color="gray.500"
                   w="max-content"
-                  px={1}
-                  fontSize="8pt"
-                  borderRadius={2}
-                >
-                  E
-                </Text>
+                />
               )}
               {track?.artists?.map((artist) => {
                 const isNotLastTrack =
@@ -62,10 +65,16 @@ const TrackInfo = ({ track, index }: TrackInfoProps) => {
             </Flex>
           </Box>
         </Flex>
-        <Text display={{ base: 'none', md: 'unset'}} flex={1} justifyContent={"flex-start"} fontSize='0.875rem' _hover={{ textDecoration: 'underline'}}>
+        <Text
+          display={{ base: "none", md: "unset" }}
+          flex={1}
+          justifyContent={"flex-start"}
+          fontSize="0.875rem"
+          _hover={{ textDecoration: "underline" }}
+        >
           {track.album.name}
         </Text>
-        <Text justifyContent={"flex-end"} fontSize={'0.875rem'}>
+        <Text justifyContent={"flex-end"} fontSize={"0.875rem"}>
           {formatDurationToMinsAndSecs(track.duration_ms)}
         </Text>
       </Flex>
