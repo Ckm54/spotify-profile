@@ -102,7 +102,7 @@ const Layout = ({ errorElement }: LayoutProps) => {
               {userPlaylists.items.map(
                 (playlist: Playlist, index: number) =>
                   index < 10 && (
-                    <Flex gap={2} pt={1} alignItems="center">
+                    <Flex gap={2} pt={1} alignItems="center" key={playlist.id}>
                       <Image
                         src={playlist.images[0]?.url}
                         alt={playlist.name}
@@ -167,6 +167,8 @@ const Layout = ({ errorElement }: LayoutProps) => {
         </Stack>
         <Box as="main" ml={{ base: 0, md: 250 }} width={"100%"}>
           {errorElement ? errorElement : <Outlet />}
+          <Divider mt={8} />
+          <Box minH={20} />
         </Box>
       </Box>
     </>

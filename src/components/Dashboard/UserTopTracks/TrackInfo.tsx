@@ -51,7 +51,7 @@ const TrackInfo = ({ track, index }: TrackInfoProps) => {
                   <Text
                     fontSize={"10pt"}
                     color="gray.400"
-                    mr={isNotLastTrack ? "2" : 0}
+                    mr={isNotLastTrack ? "1px" : 0}
                     key={artist.id}
                   >
                     {artist.name}

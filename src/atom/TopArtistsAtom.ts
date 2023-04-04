@@ -14,4 +14,14 @@ const defaultLongTermArtistsState: TopArtists = {
 export const longTermArtistsState = atom<TopArtists>({
   key: 'longTermArtists',
   default: defaultLongTermArtistsState,
+});
+
+export const mediumTermArtistsState = atom<TopArtists>({
+  key: 'mediumTermArtists',
+  default: defaultLongTermArtistsState,
+})
+
+export const shortTermArtistsState = atom<TopArtists>({
+  key: 'shortTermArtists',
+  default: defaultLongTermArtistsState,
 })
