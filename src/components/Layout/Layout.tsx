@@ -6,7 +6,9 @@ import { RxCounterClockwiseClock } from "react-icons/rx";
 import { TbMicrophone2, TbPlaylist } from "react-icons/tb";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import { Playlist } from "../../../types";
 import { logout } from "../../api/spotify";
+import { userPlaylistsState } from "../../atom/PlaylistsAtom";
 import { userProfileState } from "../../atom/UserDataAtom";
 import NavBar from "../NavBar/NavBar";
 
@@ -16,6 +18,7 @@ type LayoutProps = {
 
 const Layout = ({ errorElement }: LayoutProps) => {
   const [userInfo] = useRecoilState(userProfileState);
+  const [userPlaylists] = useRecoilState(userPlaylistsState);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,7 +36,7 @@ const Layout = ({ errorElement }: LayoutProps) => {
           minH={{ md: "90vh" }}
           position={"fixed"}
           zIndex={99}
-          width={{ base: "100%", md: 200 }}
+          width={{ base: "100%", md: 250 }}
           top={{ base: "auto", md: "unset" }}
           bottom={{ base: 0, md: "unset" }}
           right={{ base: 0, md: "unset" }}
@@ -53,16 +56,23 @@ const Layout = ({ errorElement }: LayoutProps) => {
                   gap={2}
                   borderLeftWidth={{ md: 4 }}
                   borderLeftColor={{
-                    md: location.pathname === link.href ? "brand.900" : "transparent",
+                    md:
+                      location.pathname === link.href
+                        ? "brand.900"
+                        : "transparent",
                   }}
                   borderBottomWidth={{ base: 4, md: 0 }}
                   borderBottomColor={{
                     base:
-                      location.pathname === link.href ? "brand.900" : "transparent",
+                      location.pathname === link.href
+                        ? "brand.900"
+                        : "transparent",
                     md: "transparent",
                   }}
-                  color={location.pathname === link.href ? "brand.900" : "unset"}
-                  height="60px"
+                  color={
+                    location.pathname === link.href ? "brand.900" : "unset"
+                  }
+                  height="50px"
                   px={2}
                   cursor="pointer"
                   _hover={{
@@ -86,11 +96,16 @@ const Layout = ({ errorElement }: LayoutProps) => {
             </Flex>
             <Stack display={{ base: "none", md: "unset" }} px={2}>
               <Divider />
-              <Text color={"gray.300"}>Top Albums:</Text>
-              <Text>Album 1:</Text>
-              <Divider />
-              <Text color={"gray.300"}>Top Playlists:</Text>
-              <Text>Playlist 1</Text>
+              <Text color={"gray.300"} fontSize={'0.875rem'} fontWeight={600}>Top 10 Playlists:</Text>
+              {userPlaylists.items.map(
+                (playlist: Playlist, index: number) =>
+                  index < 10 && (
+                    <Flex gap={2} pt={1} alignItems='center'>
+                      <Image src={playlist.images[0]?.url} alt={playlist.name} height={6} borderRadius='50%' />
+                      <Text fontSize={"10pt"} noOfLines={1} color={'brand.600'}>{playlist.name}</Text>
+                    </Flex>
+                  )
+              )}
             </Stack>
           </Stack>
 
@@ -135,7 +150,7 @@ const Layout = ({ errorElement }: LayoutProps) => {
             </Flex>
           </Stack>
         </Stack>
-        <Box as="main" ml={{ base: 0, md: 200 }} width={"100%"}>
+        <Box as="main" ml={{ base: 0, md: 250 }} width={"100%"}>
           {errorElement ? errorElement : <Outlet />}
         </Box>
       </Box>

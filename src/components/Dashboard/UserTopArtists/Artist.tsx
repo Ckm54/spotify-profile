@@ -6,9 +6,10 @@ import { TopArtistProfile } from "../../../../types";
 type ArtistProps = {
   artistProfileInfo: TopArtistProfile;
   withHover: boolean;
+  imgSize: number;
 };
 
-const Artist = ({ artistProfileInfo, withHover }: ArtistProps) => {
+const Artist = ({ artistProfileInfo, withHover, imgSize }: ArtistProps) => {
 
   const [isHovering, setIsHovering] = React.useState<boolean>(false);
 
@@ -30,8 +31,8 @@ const Artist = ({ artistProfileInfo, withHover }: ArtistProps) => {
       <Box position={"relative"}>
         <Image
           src={artistProfileInfo.images[0]?.url}
-          height={40}
-          width={40}
+          height={imgSize}
+          width={imgSize}
           borderRadius={"50%"}
         />
         <Box

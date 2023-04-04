@@ -1,6 +1,7 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 import { QueryClient, useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { Playlist, Playlists } from "../../../../types";
 import { getUserPlaylists } from "../../../api/apiCalls";
@@ -13,6 +14,7 @@ type Props = {};
 const UserPlaylists = (props: Props) => {
   const [userInfo] = useRecoilState(userProfileState);
   const [userPlaylists, setUserPlaylists] = useRecoilState(userPlaylistsState);
+  const navigate = useNavigate();
   
   const userId = userInfo?.id
 
@@ -44,7 +46,7 @@ const UserPlaylists = (props: Props) => {
         <Text color={"#fff"} fontWeight={600}>
           Playlists
         </Text>
-        <Text color="brand.600" cursor="pointer" _hover={{ color: "#fff" }}>
+        <Text color="brand.600" cursor="pointer" _hover={{ color: "#fff" }} onClick={() => navigate('/playlists')}>
           View all
         </Text>
       </Flex>

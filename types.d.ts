@@ -227,3 +227,10 @@ export interface Tracks {
   href:  string;
   total: number;
 }
+
+
+// *************************QUERY TYPES
+export interface TopItemsParams {
+  limit: number;
+  timeRange: string;
+}

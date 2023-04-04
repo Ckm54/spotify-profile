@@ -1,7 +1,7 @@
 // CALLING SPOTIFY API ENDPOINTS
 
 import axios from "axios";
-import { ArtistsFollowed, Playlists, TopArtists, TopTracks, UserProfile } from "../../types";
+import { ArtistsFollowed, Playlists, TopArtists, TopItemsParams, TopTracks, UserProfile } from "../../types";
 import { getAccessToken } from "./spotify";
 
 const token = getAccessToken();
@@ -44,8 +44,9 @@ export const getFollowing = async () => {
  * Get user's top items
  * https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
  */
-export const getTopArtists = async() => {
-  const response = await axios.get(`${BASE_URL}/me/top/artists?limit=8`, { headers });
+export const getTopArtists = async(params: TopItemsParams) => {
+  const { limit, timeRange } = params;
+  const response = await axios.get(`${BASE_URL}/me/top/artists?limit=${limit}&time_range=${timeRange}`, { headers });
   if(response.status === 200) {
     const data: TopArtists = response.data;
     return data;
@@ -54,8 +55,9 @@ export const getTopArtists = async() => {
   }
 }
 
-export const getTopTracks = async() => {
-  const response = await axios.get(`${BASE_URL}/me/top/tracks?limit=5`, { headers });
+export const getTopTracks = async(params: TopItemsParams) => {
+  const { limit, timeRange } = params;
+  const response = await axios.get(`${BASE_URL}/me/top/tracks?limit=${limit}&time_range=${timeRange}`, { headers });
   if(response.status === 200) {
     const data: TopTracks = response.data;
     return data;

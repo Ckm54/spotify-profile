@@ -29,6 +29,7 @@ const UserFollowing = (props: Props) => {
                 artistProfileInfo={artist}
                 key={artist.id}
                 withHover={false}
+                imgSize={32}
               />
             )
         )}
