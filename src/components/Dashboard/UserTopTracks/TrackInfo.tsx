@@ -4,6 +4,7 @@ import { TfiInfoAlt } from "react-icons/tfi";
 import { BsFillExplicitFill } from "react-icons/bs";
 import { Track } from "../../../../types";
 import { formatDurationToMinsAndSecs } from "../../../utils";
+import { useNavigate } from "react-router-dom";
 
 type TrackInfoProps = {
   track: Track;
@@ -12,6 +13,7 @@ type TrackInfoProps = {
 
 const TrackInfo = ({ track, index }: TrackInfoProps) => {
   const [isHovering, setIsHovering] = React.useState<boolean>(false);
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -56,6 +58,11 @@ const TrackInfo = ({ track, index }: TrackInfoProps) => {
                     color="gray.400"
                     mr={isNotLastTrack ? "1px" : 0}
                     key={artist.id}
+                    _hover={{
+                      textDecoration: 'underline',
+                      color: '#fff'
+                    }}
+                    onClick={() => navigate(`/artist/${artist.id}`)}
                   >
                     {artist.name}
                     {isNotLastTrack && ","}

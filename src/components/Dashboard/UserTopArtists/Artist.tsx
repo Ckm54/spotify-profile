@@ -2,6 +2,7 @@ import { Box, Image, Stack, Text, Icon } from "@chakra-ui/react";
 import { TfiInfoAlt } from "react-icons/tfi";
 import React from "react";
 import { TopArtistProfile } from "../../../../types";
+import { useNavigate } from "react-router-dom";
 
 type ArtistProps = {
   artistProfileInfo: TopArtistProfile;
@@ -12,6 +13,7 @@ type ArtistProps = {
 const Artist = ({ artistProfileInfo, withHover, imgSize }: ArtistProps) => {
 
   const [isHovering, setIsHovering] = React.useState<boolean>(false);
+  const navigate = useNavigate();
 
   return (
     <Stack
@@ -29,6 +31,7 @@ const Artist = ({ artistProfileInfo, withHover, imgSize }: ArtistProps) => {
       onMouseEnter={() => withHover && setIsHovering(true)}
       onMouseLeave={() => withHover && setIsHovering(false)}
       mb={8}
+      onClick={() => navigate(`/artist/${artistProfileInfo.id}`)}
     >
       <Box position={"relative"}>
         <Image

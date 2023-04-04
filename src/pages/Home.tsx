@@ -8,7 +8,7 @@ import { getFollowing, getTopArtists, getUserPlaylists, getUserProfile } from ".
 import { userPlaylistsState } from "../atom/PlaylistsAtom";
 import { userProfileState } from "../atom/UserDataAtom";
 import { userFollowedArtistsState } from "../atom/UserFollowedArtists";
-import { Dashboard, MyPlaylists, MyRecentPlays, MyTopArtists, MyTopTracks, NavBar } from "../components";
+import { ArtistProfile, Dashboard, MyPlaylists, MyRecentPlays, MyTopArtists, MyTopTracks, NavBar } from "../components";
 import Layout from "../components/Layout/Layout";
 import ErrorPage from "./ErrorPage";
 
@@ -75,6 +75,10 @@ const Home = (props: Props) => {
         {
           path: 'recently-played',
           element: <MyRecentPlays />
+        },
+        {
+          path: 'artist/:id',
+          element: <ArtistProfile />
         }
       ]
     },
