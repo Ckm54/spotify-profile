@@ -109,13 +109,13 @@ export const getArtistProfile = async(artistId: string) => {
 }
 
 /**
- * Get artist's profile information
- * https://developer.spotify.com/documentation/web-api/reference/get-an-artist
+ * Get artist's top tracks
+ * https://developer.spotify.com/documentation/web-api/reference/get-an-artists-top-tracks
  */
-export const getArtistTopTracks = async(artistId: string) => {
-  const response = await axios.get(`${BASE_URL}/artists/${artistId}/top-tracks`, { headers });
+export const getArtistTopTracks = async(artistId: string, country: string) => {
+  const response = await axios.get(`${BASE_URL}/artists/${artistId}/top-tracks?country=${country}`, { headers });
   if(response.status === 200) {
-    const data = response.data;
+    const data: boolean[] = response.data;
     return data;
   } else {
     return response.statusText;
