@@ -1,7 +1,7 @@
 // CALLING SPOTIFY API ENDPOINTS
 
 import axios from "axios";
-import { ArtistsFollowed, Playlists, RecentPlays, TopArtists, TopItemsParams, TopTracks, UserProfile } from "../../types";
+import { ArtistProfile, ArtistsFollowed, Playlists, RecentPlays, TopArtists, TopItemsParams, TopTracks, UserProfile } from "../../types";
 import { getAccessToken } from "./spotify";
 
 const token = getAccessToken();
@@ -88,6 +88,20 @@ export const getRecentlyPlayedTracks = async() => {
   const response = await axios.get(`${BASE_URL}/me/player/recently-played?limit=30`, { headers });
   if(response.status === 200) {
     const data: RecentPlays = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+}
+
+/**
+ * Get artist's profile information
+ * https://developer.spotify.com/documentation/web-api/reference/get-an-artist
+ */
+export const getArtistProfile = async(artistId: string) => {
+  const response = await axios.get(`${BASE_URL}/artists/${artistId}`, { headers });
+  if(response.status === 200) {
+    const data: ArtistProfile = response.data;
     return data;
   } else {
     return response.statusText;

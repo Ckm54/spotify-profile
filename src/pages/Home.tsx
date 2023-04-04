@@ -4,11 +4,24 @@ import { useQuery } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { ArtistsFollowed, Playlists, UserProfile } from "../../types";
-import { getFollowing, getTopArtists, getUserPlaylists, getUserProfile } from "../api/apiCalls";
+import {
+  getFollowing,
+  getTopArtists,
+  getUserPlaylists,
+  getUserProfile,
+} from "../api/apiCalls";
 import { userPlaylistsState } from "../atom/PlaylistsAtom";
 import { userProfileState } from "../atom/UserDataAtom";
 import { userFollowedArtistsState } from "../atom/UserFollowedArtists";
-import { ArtistProfile, Dashboard, MyPlaylists, MyRecentPlays, MyTopArtists, MyTopTracks, NavBar } from "../components";
+import {
+  ArtistProfilePage,
+  Dashboard,
+  MyPlaylists,
+  MyRecentPlays,
+  MyTopArtists,
+  MyTopTracks,
+  NavBar,
+} from "../components";
 import Layout from "../components/Layout/Layout";
 import ErrorPage from "./ErrorPage";
 
@@ -19,8 +32,8 @@ const Home = (props: Props) => {
   const setArtistsFollowed = useSetRecoilState(userFollowedArtistsState);
   const [userInfo] = useRecoilState(userProfileState);
   const setUserPlaylists = useSetRecoilState(userPlaylistsState);
-  
-  const userId = userInfo?.id
+
+  const userId = userInfo?.id;
 
   const {} = useQuery("userProfile", () => getUserProfile(), {
     onSuccess: async (data: UserProfile) => {
@@ -34,13 +47,16 @@ const Home = (props: Props) => {
     },
   });
 
-
-  const { isLoading } = useQuery("getPlaylists", () => getUserPlaylists(userId), {
-    onSuccess: (data: Playlists) => {
-      setUserPlaylists(data);
-    },
-    enabled: !!userId
-  });
+  const { isLoading } = useQuery(
+    "getPlaylists",
+    () => getUserPlaylists(userId),
+    {
+      onSuccess: (data: Playlists) => {
+        setUserPlaylists(data);
+      },
+      enabled: !!userId,
+    }
+  );
 
   // React.useEffect(() => {
   //   if(userInfo.id !== '') {
@@ -55,32 +71,32 @@ const Home = (props: Props) => {
       errorElement: <Layout errorElement={<ErrorPage />} />,
       children: [
         {
-          path: '',
+          path: "",
           index: true,
           element: <Dashboard />,
-          errorElement: <ErrorPage />
+          errorElement: <ErrorPage />,
         },
         {
-          path: 'top-artists',
-          element: <MyTopArtists />
+          path: "top-artists",
+          element: <MyTopArtists />,
         },
         {
-          path: 'top-tracks',
-          element: <MyTopTracks />
+          path: "top-tracks",
+          element: <MyTopTracks />,
         },
         {
-          path: 'playlists',
-          element: <MyPlaylists />
+          path: "playlists",
+          element: <MyPlaylists />,
         },
         {
-          path: 'recently-played',
-          element: <MyRecentPlays />
+          path: "recently-played",
+          element: <MyRecentPlays />,
         },
         {
-          path: 'artist/:id',
-          element: <ArtistProfile />
-        }
-      ]
+          path: "artist/:id",
+          element: <ArtistProfilePage />,
+        },
+      ],
     },
   ]);
 

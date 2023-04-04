@@ -24,7 +24,8 @@ const MyTopArtists = (props: Props) => {
     name: "allTime",
   });
 
-  const [longTermTopArtists] = useRecoilState(longTermArtistsState);
+  const [longTermTopArtists, setLongTermTopArtists] =
+    useRecoilState(longTermArtistsState);
   const [mediumTermTopArtists, setMediumTermTopArtists] = useRecoilState(
     mediumTermArtistsState
   );
@@ -33,6 +34,11 @@ const MyTopArtists = (props: Props) => {
   );
 
   const navigate = useNavigate();
+
+  const longTermParams: TopItemsParams = {
+    limit: 30,
+    timeRange: "medium_term",
+  };
 
   const mediumTermParams: TopItemsParams = {
     limit: 30,
@@ -43,6 +49,16 @@ const MyTopArtists = (props: Props) => {
     limit: 30,
     timeRange: "short_term",
   };
+
+  const { isLoading: longTermLoading } = useQuery(
+    ["getMediumTermTopArtists", mediumTermParams],
+    () => getTopArtists(longTermParams),
+    {
+      onSuccess: (data: TopArtists) => {
+        setLongTermTopArtists(data);
+      },
+    }
+  );
 
   const { isLoading } = useQuery(
     ["getMediumTermTopArtists", mediumTermParams],
@@ -112,7 +128,7 @@ const MyTopArtists = (props: Props) => {
         </Flex>
       </Flex>
 
-      {isLoading || loadingShortTerm ? (
+      {isLoading || loadingShortTerm || longTermLoading ? (
         <Text>Loading...</Text>
       ) : (
         <Grid templateColumns="repeat(7, 1fr)" gap={2}>

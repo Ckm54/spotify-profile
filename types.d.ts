@@ -50,11 +50,6 @@ export interface FollowedArtist {
   uri:           string;
 }
 
-export interface Followers {
-  href:  null;
-  total: number;
-}
-
 export interface TopArtists {
   items:    TopArtistProfile[];
   total:    number;
@@ -76,11 +71,6 @@ export interface TopArtistProfile {
   popularity:    number;
   type:          string;
   uri:           string;
-}
-
-export interface Followers {
-  href:  null;
-  total: number;
 }
 
 export interface TopTracks {
@@ -177,10 +167,6 @@ export interface Playlist {
   uri:           string;
 }
 
-export interface ExternalUrls {
-  spotify: string;
-}
-
 export interface PlaylistImage {
   height: number | null;
   url:    string;
@@ -227,11 +213,6 @@ export interface Context {
   external_urls: ExternalUrls;
   href:          string;
 }
-
-export interface ExternalUrls {
-  spotify: string;
-}
-
 
 export interface Track {
   album:             Album;
@@ -285,6 +266,30 @@ export interface ExternalIDS {
 
 export enum TrackType {
   Track = "track",
+}
+
+
+// ***************************ARTIST PROFILE
+export interface ArtistProfile {
+  external_urls: ExternalUrls;
+  followers:     Followers;
+  genres:        string[];
+  href:          string;
+  id:            string;
+  images:        Image[];
+  name:          string;
+  popularity:    number;
+  type:          string;
+  uri:           string;
+}
+
+export interface ExternalUrls {
+  spotify: string;
+}
+
+export interface Followers {
+  href:  null;
+  total: number;
 }
 
 
