@@ -132,6 +132,23 @@ export interface Artist {
   uri:           string;
 }
 
+export interface RelatedArtistsData {
+  artists: RelatedArtistsType[]
+}
+
+export interface RelatedArtistsType {
+  external_urls: ExternalUrls;
+  followers:     Followers;
+  genres:        string[];
+  href:          string;
+  id:            string;
+  images:        Image[];
+  name:          string;
+  popularity:    number;
+  type:          Type;
+  uri:           string;
+}
+
 export enum Type {
   Artist = "artist",
 }
