@@ -36,7 +36,7 @@ const Layout = ({ errorElement }: LayoutProps) => {
           minH={{ md: "90vh" }}
           position={"fixed"}
           zIndex={99}
-          width={{ base: "100%", md: 250 }}
+          width={{ base: "100%", md: 200, xl: 250 }}
           top={{ base: "auto", md: "unset" }}
           bottom={{ base: 0, md: "unset" }}
           right={{ base: 0, md: "unset" }}
@@ -46,6 +46,9 @@ const Layout = ({ errorElement }: LayoutProps) => {
               direction={{ base: "row", md: "column" }}
               alignItems={{ base: "center", md: "flex-start" }}
               justifyContent={{ base: "space-between" }}
+              bg={{base: "rgba(0, 0, 0, 0.86)", md: 'unset'}}
+              pt={{base: 4, md: 0}}
+              pb={{base: 2, md: 0}}
             >
               {navLinks.main.map((link, index: number) => (
                 <Flex
@@ -96,7 +99,7 @@ const Layout = ({ errorElement }: LayoutProps) => {
             </Flex>
             <Stack display={{ base: "none", md: "unset" }} px={2}>
               <Divider />
-              <Flex justifyContent={'space-between'} alignItems='center'>
+              <Flex justifyContent={'space-between'} alignItems={{xl: 'center'}} flexDirection={{md: 'column', xl: 'row'}}>
                 <Text color={"gray.300"} fontSize={"0.875rem"} fontWeight={600}>
                   Top 10 Playlists:
                 </Text>
@@ -107,6 +110,7 @@ const Layout = ({ errorElement }: LayoutProps) => {
                   fontWeight='semibold'
                   _hover={{ color: "brand.900" }}
                   onClick={() => navigate("/playlists")}
+                  mt={{md: 2, xl: 0}}
                 >
                   View all
                 </Text>
@@ -177,7 +181,7 @@ const Layout = ({ errorElement }: LayoutProps) => {
             </Flex>
           </Stack>
         </Stack>
-        <Box as="main" ml={{ base: 0, md: 250 }} width={"100%"}>
+        <Box as="main" ml={{ base: 0, md: 200, xl: 250 }} width={"100%"}>
           {errorElement ? errorElement : <Outlet />}
           <Divider mt={8} />
           <Box minH={20} />
