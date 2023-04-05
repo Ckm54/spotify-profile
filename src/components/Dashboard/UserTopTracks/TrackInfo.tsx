@@ -3,7 +3,7 @@ import React from "react";
 import { TfiInfoAlt } from "react-icons/tfi";
 import { BsFillExplicitFill } from "react-icons/bs";
 import { Track } from "../../../../types";
-import { formatDurationToMinsAndSecs } from "../../../utils";
+import { formatDurationToMinsAndSecs, formatStringEllipsis } from "../../../utils";
 import { useNavigate } from "react-router-dom";
 
 type TrackInfoProps = {
@@ -25,7 +25,7 @@ const TrackInfo = ({ track, index, isArtistTracks }: TrackInfoProps) => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <Flex justifyContent={"space-between"} px={5} alignItems="center">
+      <Flex justifyContent={"space-between"} px={{xl: 5}} alignItems="center">
         <Flex flex={1} alignItems="center" gap={2}>
           {isHovering ? (
             <Icon as={TfiInfoAlt} w={5} h={5} />
@@ -39,8 +39,8 @@ const TrackInfo = ({ track, index, isArtistTracks }: TrackInfoProps) => {
             alt={track.name}
           />
           <Box>
-            <Text fontSize={{ base: "10pt", md: "0.975rem" }}>
-              {track.name}
+            <Text fontSize={{ base: "10pt", xl: "0.975rem" }}>
+              {formatStringEllipsis(track.name, 30)}
             </Text>
             <Flex gap={2} alignItems='center'>
               {track.explicit && (
@@ -74,13 +74,13 @@ const TrackInfo = ({ track, index, isArtistTracks }: TrackInfoProps) => {
           </Box>
         </Flex>
         <Text
-          display={{ base: "none", md: "unset" }}
+          display={{ base: "none", xl: "unset" }}
           flex={1}
           justifyContent={"flex-start"}
           fontSize="0.875rem"
           _hover={{ textDecoration: "underline" }}
         >
-          {track.album.name}
+          {formatStringEllipsis(track.album.name, 20)}
           {
             isArtistTracks && <span style={{marginLeft: '0.7rem'}}>(Track {track.track_number})</span>
           }
