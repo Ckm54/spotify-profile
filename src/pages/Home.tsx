@@ -1,12 +1,9 @@
-import { Stack } from "@chakra-ui/layout";
-import React from "react";
 import { useQuery } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { ArtistsFollowed, Playlists, UserProfile } from "../../types";
 import {
   getFollowing,
-  getTopArtists,
   getUserPlaylists,
   getUserProfile,
 } from "../api/apiCalls";
@@ -20,7 +17,7 @@ import {
   MyRecentPlays,
   MyTopArtists,
   MyTopTracks,
-  NavBar,
+  PlaylistDetails,
 } from "../components";
 import Layout from "../components/Layout/Layout";
 import ErrorPage from "./ErrorPage";
@@ -95,6 +92,10 @@ const Home = (props: Props) => {
         {
           path: "artist/:id",
           element: <ArtistProfilePage />,
+        },
+        {
+          path: "playlist/:id",
+          element: <PlaylistDetails />,
         },
       ],
     },

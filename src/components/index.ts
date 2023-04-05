@@ -6,6 +6,7 @@ import MyRecentPlays from "./MyRecentPlays";
 import MyTopArtists from "./MyTopArtists";
 import MyTopTracks from "./MyTopTracks";
 import ArtistProfilePage from "./ArtistProfilePage";
+import PlaylistDetails from "./PlaylistDetailsPage";
 
 export {
   NavBar,
@@ -16,4 +17,5 @@ export {
   MyTopArtists,
   MyTopTracks,
   ArtistProfilePage,
+  PlaylistDetails,
 };
