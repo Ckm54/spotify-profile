@@ -20,7 +20,7 @@ const ArtistTopTracks = (props: Props) => {
   const { id } = useParams();
 
   const { isLoading } = useQuery(
-    ["getArtistTopTracks", id],
+    ["getArtistTopTracks", id, userData.country],
     () => getArtistTopTracks(id!, userData.country),
     {
       onSuccess: (data: ArtistTopTracksType) => {
@@ -30,20 +30,28 @@ const ArtistTopTracks = (props: Props) => {
     }
   );
   return (
-    <Box bg={'blackAlpha.100'} px={4}>
-      <Text color={"#fff"} fontWeight={600} py={4}>
-        {artistName}
-        {artistName.split("")[artistName.length - 1] !== "s" ? "'s" : "'"} Top 5
-        Tracks
-      </Text>
-
+    <Box bg={"blackAlpha.100"} px={4}>
       {isLoading ? (
         <Text>Loading...</Text>
+      ) : artistTopTracks?.tracks.length === 0 ? (
+        <Box>
+          <Text>Sorry artist profile info is unavailable!</Text>
+        </Box>
       ) : (
-        <Box maxW={'70%'}>
-          {artistTopTracks?.tracks.map((track: Track, index: number) => (
-            index < 5 && <TrackInfo track={track} index={index + 1} isArtistTracks />
-          ))}
+        <Box maxW={{xl: "70%"}} >
+          <Text color={"#fff"} fontWeight={600} py={4}>
+            {artistName}
+            {artistName.split("")[artistName.length - 1] !== "s"
+              ? "'s"
+              : "'"}{" "}
+            Top 5 Tracks
+          </Text>
+          {artistTopTracks?.tracks.map(
+            (track: Track, index: number) =>
+              index < 5 && (
+                <TrackInfo track={track} index={index + 1} isArtistTracks />
+              )
+          )}
         </Box>
       )}
     </Box>
