@@ -6,18 +6,18 @@ export const getHashParams = () => {
   let e: string[] | null;
   const regex = /([^&;=]+)=?([^&;]*)/g;
   const query = window.location.hash.substring(1);
-  while((e = regex.exec(query))) {
+  while ((e = regex.exec(query))) {
     hashParams[e[1]] = decodeURIComponent(e[2]);
   }
 
   return hashParams;
-}
+};
 
 // Format milliseconds into minutes and seconds
 export const formatDurationToMinsAndSecs = (millis: number) => {
   const minutes = Math.floor(millis / 60000);
   const seconds: number = Math.floor((millis % 60000) / 1000);
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 };
 
 // get dominant color from profile image
@@ -30,6 +30,15 @@ export const getDominantColor = async (imageURL: string) => {
       return response;
     }
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
+
+// place ellipsis on long strings at a certain length
+export const formatStringEllipsis = (text: string, length: number) => {
+  if (text.length < length) {
+    return text;
+  } else {
+    return `${text.slice(0, length)}...`;
+  }
+};
