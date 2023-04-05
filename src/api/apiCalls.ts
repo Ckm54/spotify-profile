@@ -8,10 +8,11 @@ import {
   ArtistsFollowed,
   Playlists,
   RecentPlays,
+  RelatedArtistsData,
   TopArtists,
   TopItemsParams,
   TopTracks,
-  UserProfile,
+  UserProfile
 } from "../../types";
 import { getAccessToken } from "./spotify";
 
@@ -162,6 +163,22 @@ export const getArtistAlbums = async (artistId: string, groupsIncluded: string) 
   });
   if (response.status === 200) {
     const data: ArtistAlbumsType = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+};
+
+/**
+ * Get artist's related artists
+ * https://developer.spotify.com/documentation/web-api/reference/get-an-artists-related-artists
+ */
+export const getArtistRelatedArtists = async (artistId: string) => {
+  const response = await axios.get(`${BASE_URL}/artists/${artistId}/related-artists`, {
+    headers,
+  });
+  if (response.status === 200) {
+    const data: RelatedArtistsData = response.data;
     return data;
   } else {
     return response.statusText;

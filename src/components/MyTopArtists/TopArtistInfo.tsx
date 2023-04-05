@@ -10,7 +10,7 @@ const TopArtistInfo = ({artistInfo}: TopArtistInfoProps) => {
   return (
     <Stack>
       <Flex>
-        <Image src={artistInfo.images[0]?.url} height={40} width={40} objectFit='cover' />
+        <Image src={artistInfo.images[0]?.url} alt={artistInfo.name} height={40} width={40} objectFit='cover' />
         <Stack>
           <Text>{artistInfo.name}</Text>
           <Text>{artistInfo.popularity}%</Text>

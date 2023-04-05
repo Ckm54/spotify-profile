@@ -34,9 +34,9 @@ const TrackInfo = ({ track, index, isArtistTracks }: TrackInfoProps) => {
           )}
           <Image
             src={track.album.images[0]?.url}
+            alt={track.name}
             h={10}
             w={10}
-            alt={track.name}
           />
           <Box>
             <Text fontSize={{ base: "10pt", xl: "0.975rem" }}>

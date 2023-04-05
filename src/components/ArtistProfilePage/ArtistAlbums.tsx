@@ -18,7 +18,6 @@ const ArtistAlbums = (props: Props) => {
     {
       onSuccess: (data: ArtistAlbumsType) => {
         setArtistAlbums(data);
-        console.log(artistAlbums?.total);
       },
       enabled: !!id,
     }
@@ -33,22 +32,19 @@ const ArtistAlbums = (props: Props) => {
             <Text color={"#fff"} fontWeight={600} mb={8} mt={{xl: 4}}>
               Top Albums
             </Text>
-            {/* <Text
+            <Text
               color="brand.600"
-              cursor="pointer"
-              _hover={{ color: "#fff" }}
-              onClick={() => {}}
             >
-              View all
-            </Text> */}
+              Total: ({artistAlbums?.total})
+            </Text>
           </Flex>
 
           {isLoading ? (
             <Text>Loading...</Text>
           ) : (
-            <Grid templateColumns={{base: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', xl: 'repeat(6, 1fr)'}}>
+            <Grid templateColumns={{base: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)', xl: 'repeat(6, 1fr)'}}>
               {artistAlbums?.items.map((album: Album, index: number) => (
-                index < 6 && <AlbumCard albumInfo={album} />
+                index < 6 && <AlbumCard albumInfo={album} key={album.id} />
               ))}
             </Grid>
           )}

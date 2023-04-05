@@ -22,6 +22,7 @@ const AlbumCard = ({ albumInfo }: AlbumCardProps) => {
       <CardBody p={2}>
         <Image
           src={albumInfo.images[0]?.url}
+          alt={albumInfo.name}
           height={40}
           w={40}
           objectFit={"cover"}

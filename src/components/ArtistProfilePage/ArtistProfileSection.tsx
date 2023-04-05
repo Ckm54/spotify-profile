@@ -97,6 +97,7 @@ const ArtistProfileSection = (props: Props) => {
           >
             <Image
               src={artistProfile.images[0]?.url}
+              alt={artistProfile.name}
               h={52}
               w={52}
               objectFit="cover"
