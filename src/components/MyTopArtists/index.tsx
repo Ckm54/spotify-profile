@@ -131,7 +131,10 @@ const MyTopArtists = (props: Props) => {
       {isLoading || loadingShortTerm || longTermLoading ? (
         <Text>Loading...</Text>
       ) : (
-        <Grid templateColumns="repeat(7, 1fr)" gap={2}>
+        <Grid
+          templateColumns={{ md: "repeat(3, 1fr)", xl: "repeat(7, 1fr)" }}
+          gap={{ base: 4, xl: 2 }}
+        >
           {activeTab.name === "allTime"
             ? longTermTopArtists?.items.map((artistInfo: TopArtistProfile) => (
                 <GridItem key={artistInfo.id}>
