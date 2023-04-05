@@ -66,7 +66,7 @@ const ArtistProfileSection = (props: Props) => {
     "getIsFollowing",
     () => getIsFollowing(artistProfile.id),
     {
-      onSuccess: (data) => {
+      onSuccess: (data: boolean[]) => {
         setIsFollowing(data[0]);
       },
       enabled: !!artistProfile.id,
@@ -92,6 +92,8 @@ const ArtistProfileSection = (props: Props) => {
             px={5}
             position="relative"
             alignItems={"center"}
+            flexDirection={{base: 'column', md: 'row'}}
+            overflowX={'hidden'}
           >
             <Image
               src={artistProfile.images[0]?.url}
