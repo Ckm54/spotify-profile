@@ -1,4 +1,4 @@
-import { Box, Flex, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import PlaylistDetailHeader from "./PlaylistDetailHeader";
 import { useQuery } from "react-query";
@@ -65,16 +65,22 @@ const PlaylistDetailsPage = (props: Props) => {
   return (
     <Box maxW={"100%"}>
       <PlaylistDetailHeader playlistInfo={playlistInfo} />
-      <Stack position={"relative"}>
-        <Flex py={4} alignItems={'center'} gap={8}>
+      <Stack position={"relative"} px={5}>
+        <Flex py={4} alignItems={"center"} gap={8}>
           <Text color={"#fff"} fontWeight={600}>
             Tracks on album
           </Text>
-          <Text color='brand.600'>(Total Tracks: {playlistInfo.tracks.total})</Text>
+          <Text color="brand.600">
+            (Total Tracks: {playlistInfo.tracks.total})
+          </Text>
         </Flex>
-        {playlistInfo.tracks.items.map((track: PlaylistTrackType) => (
-          <PlaylistTrack track={track} />
-        ))}
+        <Grid gridTemplateColumns={'repeat(3, 1fr)'}>
+          {playlistInfo.tracks.items.map((track: PlaylistTrackType) => (
+            <GridItem key={track.track.id} mx={4}>
+              <PlaylistTrack track={track} />
+            </GridItem>
+          ))}
+        </Grid>
       </Stack>
     </Box>
   );
