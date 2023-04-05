@@ -297,6 +297,19 @@ export interface Followers {
 }
 
 
+//***********************ARTIST ALBUMS */
+export interface ArtistAlbumsType {
+  href:     string;
+  items:    Album[];
+  limit:    number;
+  next:     string;
+  offset:   number;
+  previous: null;
+  total:    number;
+}
+
+
+
 
 // *************************QUERY TYPES
 export interface TopItemsParams {
