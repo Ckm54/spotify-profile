@@ -36,8 +36,8 @@ const Artist = ({ artistProfileInfo, withHover, imgSize }: ArtistProps) => {
       <Box position={"relative"}>
         <Image
           src={artistProfileInfo.images[0]?.url}
-          height={{base: 20, md: imgSize}}
-          width={{base: 20, md: imgSize}}
+          height={{base: 20,md: 32, xl: imgSize}}
+          width={{base: 20,md: 32, xl: imgSize}}
           borderRadius={"50%"}
           objectFit='cover'
         />
