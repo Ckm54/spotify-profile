@@ -1,7 +1,7 @@
 import { Box, Flex, Image, Icon, Text } from "@chakra-ui/react";
 import React from "react";
-import { TfiInfoAlt } from "react-icons/tfi";
 import { BsFillExplicitFill } from "react-icons/bs";
+import { FaInfoCircle } from "react-icons/fa";
 import { Track } from "../../../../types";
 import { formatDurationToMinsAndSecs, formatStringEllipsis } from "../../../utils";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +28,7 @@ const TrackInfo = ({ track, index, isArtistTracks }: TrackInfoProps) => {
       <Flex justifyContent={"space-between"} px={{xl: 5}} alignItems="center">
         <Flex flex={1} alignItems="center" gap={2}>
           {isHovering ? (
-            <Icon as={TfiInfoAlt} w={5} h={5} />
+            <Icon as={FaInfoCircle} w={5} h={5} />
           ) : (
             <Text fontWeight="600">{index}.</Text>
           )}

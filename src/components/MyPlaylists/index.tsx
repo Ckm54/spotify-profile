@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import React from "react";
 import { useRecoilState } from "recoil";
 import { Playlist } from "../../../types";
@@ -12,11 +12,15 @@ const MyPlaylists = (props: Props) => {
 
   return (
     <Box px={4}>
-      <Text py={4} fontWeight={600}>
-        My Playlists
-      </Text>
+      <Flex py={4} gap={4}>
+        <Text fontWeight={600}>My Playlists</Text>
+        <Text color='brand.600'>Total: ({userPlaylists.total})</Text>
+      </Flex>
 
-      <Grid templateColumns={'repeat(5, 1fr)'} gridGap={6}>
+      <Grid
+        templateColumns={{ base: "repeat(2, 1fr)", xl: "repeat(5, 1fr)" }}
+        gridGap={6}
+      >
         {userPlaylists.items.map((playlist: Playlist) => (
           <GridItem key={playlist.id}>
             <PlaylistCard playlist={playlist} detailed={true} />

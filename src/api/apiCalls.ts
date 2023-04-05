@@ -12,6 +12,7 @@ import {
   TopArtists,
   TopItemsParams,
   TopTracks,
+  TrackAudioFeaturesType,
   UserProfile
 } from "../../types";
 import { getAccessToken } from "./spotify";
@@ -195,6 +196,22 @@ export const getArtistRelatedArtists = async (artistId: string) => {
   });
   if (response.status === 200) {
     const data: RelatedArtistsData = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+};
+
+/**
+ * Get artist's related artists
+ * https://developer.spotify.com/documentation/web-api/reference/get-an-artists-related-artists
+ */
+export const getTracksAudioFeatures = async (trackIds: string) => {
+  const response = await axios.get(`${BASE_URL}/audio-features?ids=${trackIds}`, {
+    headers,
+  });
+  if (response.status === 200) {
+    const data: TrackAudioFeaturesType = response.data;
     return data;
   } else {
     return response.statusText;

@@ -43,7 +43,7 @@ const RelatedArtists = (props: Props) => {
       <Grid templateColumns={{base: "repeat(2, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(4, 1fr)", xl: "repeat(6, 1fr)"}} gridGap={4} gridRowGap={6}>
         {relatedArtists?.length > 0 &&
           relatedArtists.map((artist: RelatedArtistsType) => (
-            <RelatedArtist artist={artist} />
+            <RelatedArtist artist={artist} key={artist.id} />
           ))}
       </Grid>
     </Box>

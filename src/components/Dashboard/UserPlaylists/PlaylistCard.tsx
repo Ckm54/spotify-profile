@@ -25,8 +25,8 @@ const PlaylistCard = ({ playlist, detailed }: PlaylistCardProps) => {
       <Image
         src={playlist.images[0]?.url}
         alt={playlist.name}
-        h={detailed ? "250" : "200"}
-        w={detailed ? "250" : "100%"}
+        h={{lg: 42, xl: detailed ? "250" : "200"}}
+        w={{md:  detailed ? "250" : "100%"}}
         objectFit="cover"
       />
       <Stack justifyContent={"flex-start"}>

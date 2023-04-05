@@ -47,7 +47,7 @@ const PlaylistDetailHeader = ({ playlistInfo }: PlaylistDetailHeaderProps) => {
           px={5}
           position="relative"
           alignItems={"center"}
-          flexDirection={{ base: "column", md: "row" }}
+          flexDirection={{ base: "column", lg: "row" }}
           overflowX={"hidden"}
         >
           <Image

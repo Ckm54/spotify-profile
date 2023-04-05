@@ -8,12 +8,14 @@ import { useRecoilState } from "recoil";
 import { userProfileState } from "../../atom/UserDataAtom";
 import { PlaylistInfoType, PlaylistTrackType } from "../../../types";
 import PlaylistTrack from "./PlaylistTrack";
+import { TracksAudioFeaturesChart } from "../../common";
 
 type Props = {};
 
 const PlaylistDetailsPage = (props: Props) => {
   const { id } = useParams();
   const [userInfo] = useRecoilState(userProfileState);
+  const [trackIds, setTrackIds] = React.useState<string>("");
   const [playlistInfo, setPlaylistInfo] = React.useState<PlaylistInfoType>({
     collaborative: false,
     description: "",
@@ -58,10 +60,15 @@ const PlaylistDetailsPage = (props: Props) => {
     {
       onSuccess: (data: PlaylistInfoType) => {
         setPlaylistInfo(data);
+        const ids: string = data.tracks.items
+          .map((track: PlaylistTrackType) => track.track.id)
+          .join(",");
+        setTrackIds(ids);
       },
       enabled: !!id,
     }
   );
+
   return (
     <Box maxW={"100%"}>
       <PlaylistDetailHeader playlistInfo={playlistInfo} />
@@ -74,9 +81,17 @@ const PlaylistDetailsPage = (props: Props) => {
             (Total Tracks: {playlistInfo.tracks.total})
           </Text>
         </Flex>
-        <Grid gridTemplateColumns={'repeat(3, 1fr)'}>
+
+        {
+          trackIds && (
+            <TracksAudioFeaturesChart trackIds={trackIds} />
+          )
+        }
+        <Grid
+          gridTemplateColumns={{ lg: "repeat(2, 1fr)", xl: "repeat(3, 1fr)" }}
+        >
           {playlistInfo.tracks.items.map((track: PlaylistTrackType) => (
-            <GridItem key={track.track.id} mx={4}>
+            <GridItem key={track.track.id} mx={{ lg: 4 }}>
               <PlaylistTrack track={track} />
             </GridItem>
           ))}

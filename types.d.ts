@@ -426,6 +426,36 @@ export interface VideoThumbnail {
   url: null;
 }
 
+//*******************************TRACK AUDIO FEATURES */
+export interface TrackAudioFeaturesType {
+  audio_features: AudioFeature[];
+}
+
+export interface AudioFeature {
+  danceability: number;
+  energy: number;
+  key: number;
+  loudness: number;
+  mode: number;
+  speechiness: number;
+  acousticness: number;
+  instrumentalness: number;
+  liveness: number;
+  valence: number;
+  tempo: number;
+  type: AudioFeaturesType;
+  id: string;
+  uri: string;
+  track_href: string;
+  analysis_url: string;
+  duration_ms: number;
+  time_signature: number;
+}
+
+export enum AudioFeaturesType {
+  AudioFeatures = "audio_features",
+}
+
 // *************************QUERY TYPES
 export interface TopItemsParams {
   limit: number;

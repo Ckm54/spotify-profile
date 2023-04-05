@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { Album, ArtistAlbumsType } from "../../../types";
 import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
-import AlbumCard from "../../common/AlbumCard";
+import { AlbumCard } from "../../common";
 
 type Props = {};
 
@@ -28,8 +28,8 @@ const ArtistAlbums = (props: Props) => {
         <React.Fragment />
       ) : (
         <Box maxW={{ xl: "70%" }}>
-          <Flex justifyContent={"space-between"} alignItems="center" px={5}>
-            <Text color={"#fff"} fontWeight={600} mb={8} mt={{ xl: 4 }}>
+          <Flex justifyContent={"space-between"} alignItems="center" px={5} my={8} >
+            <Text color={"#fff"} fontWeight={600} mt={{ xl: 4 }}>
               Top Albums
             </Text>
             <Text color="brand.600">Total: ({artistAlbums?.total})</Text>
