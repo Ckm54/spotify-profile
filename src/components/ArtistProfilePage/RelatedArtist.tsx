@@ -3,6 +3,7 @@ import React from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { RelatedArtistsType } from "../../../types";
 import { useNavigate } from "react-router-dom";
+import { formatStringEllipsis } from "../../utils";
 
 type Props = {
   artist: RelatedArtistsType;
@@ -28,8 +29,8 @@ const RelatedArtist = ({ artist }: Props) => {
         src={artist.images[0]?.url}
         alt={artist.name}
         cursor={"pointer"}
-        height={56}
-        width={56}
+        height={{base: 32, md: 56}}
+        width={{base: 32, md: 56}}
         objectFit={"cover"}
         borderRadius="50%"
         position="relative"
@@ -38,7 +39,7 @@ const RelatedArtist = ({ artist }: Props) => {
         hidden={!isHovering}
         transition={"all .3s ease"}
         borderRadius={"50%"}
-        width={56}
+        width={{base: 32, md: 56}}
         alignItems={"center"}
         justifyContent={"center"}
         backgroundClip={"border-box"}
@@ -49,8 +50,11 @@ const RelatedArtist = ({ artist }: Props) => {
         height="100%"
       >
         <Icon fontSize={"2rem"} as={FaInfoCircle} />
-        <Text color="white" fontWeight="semibold">
+        <Text color="white" display={{base: 'none', md: 'unset'}} fontWeight="semibold">
           {artist.name}
+        </Text>
+        <Text color="white" display={{base: 'unset', md: 'none'}} fontWeight="semibold">
+          {formatStringEllipsis(artist.name, 5)}
         </Text>
       </Stack>
     </GridItem>

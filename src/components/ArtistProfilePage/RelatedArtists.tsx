@@ -36,11 +36,11 @@ const RelatedArtists = (props: Props) => {
 
   return (
     <Box maxW="100%">
-      <Text color={"#fff"} fontWeight={600} mb={8} mt={{ xl: 4 }}>
+      <Text color={"#fff"} fontWeight={600} mb={8} pl={5} mt={{ xl: 4 }}>
         Related Artists
       </Text>
 
-      <Grid templateColumns={"repeat(6, 1fr)"} gridGap={4} gridRowGap={6}>
+      <Grid templateColumns={{base: "repeat(2, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(4, 1fr)", xl: "repeat(6, 1fr)"}} gridGap={4} gridRowGap={6}>
         {relatedArtists?.length > 0 &&
           relatedArtists.map((artist: RelatedArtistsType) => (
             <RelatedArtist artist={artist} />

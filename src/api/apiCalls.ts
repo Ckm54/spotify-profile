@@ -103,6 +103,22 @@ export const getUserPlaylists = async (userId: string) => {
 };
 
 /**
+ * Get a playlist's info
+ * https://developer.spotify.com/documentation/web-api/reference/get-playlist
+ */
+export const getPlaylistInfo = async (playlistId: string, country: string) => {
+  const response = await axios.get(`${BASE_URL}/playlists/${playlistId}?country=${country}`, {
+    headers,
+  });
+  if (response.status === 200) {
+    const data = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+};
+
+/**
  * Get user's recently played tracks
  * https://developer.spotify.com/documentation/web-api/reference/get-recently-played
  */

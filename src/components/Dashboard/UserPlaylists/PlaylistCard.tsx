@@ -1,6 +1,7 @@
 import { Box, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { Playlist } from "../../../../types";
+import { useNavigate } from "react-router-dom";
 
 type PlaylistCardProps = {
   playlist: Playlist;
@@ -8,6 +9,8 @@ type PlaylistCardProps = {
 };
 
 const PlaylistCard = ({ playlist, detailed }: PlaylistCardProps) => {
+  const navigate = useNavigate();
+
   return (
     <Stack
       justifyContent={"center"}
@@ -17,6 +20,7 @@ const PlaylistCard = ({ playlist, detailed }: PlaylistCardProps) => {
       bg="gray.800"
       transition={"all 0.32s ease"}
       _hover={{ bg: "gray.900" }}
+      onClick={() => navigate(`/playlist/${playlist.id}`)}
     >
       <Image
         src={playlist.images[0]?.url}

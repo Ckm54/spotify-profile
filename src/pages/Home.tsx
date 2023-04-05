@@ -17,7 +17,7 @@ import {
   MyRecentPlays,
   MyTopArtists,
   MyTopTracks,
-  PlaylistDetails,
+  PlaylistDetailsPage,
 } from "../components";
 import Layout from "../components/Layout/Layout";
 import ErrorPage from "./ErrorPage";
@@ -95,7 +95,7 @@ const Home = (props: Props) => {
         },
         {
           path: "playlist/:id",
-          element: <PlaylistDetails />,
+          element: <PlaylistDetailsPage />,
         },
       ],
     },

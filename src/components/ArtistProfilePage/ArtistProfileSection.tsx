@@ -111,7 +111,7 @@ const ArtistProfileSection = (props: Props) => {
                   {artistProfile.name}
                 </Text>
                 <Stack mb={4}>
-                  <Flex alignItems={"center"}>
+                  <Flex alignItems={"center"} flexWrap={'wrap'}>
                     <Text fontSize={"10pt"} fontWeight="semibold" mr={2}>
                       Genres:
                     </Text>

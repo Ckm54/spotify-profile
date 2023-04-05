@@ -138,6 +138,7 @@ const Layout = ({ errorElement }: LayoutProps) => {
                         color={"brand.600"}
                         cursor="pointer"
                         _hover={{ textDecoration: "underline" }}
+                        onClick={() => navigate(`/playlist/${playlist.id}`)}
                       >
                         {playlist.name}
                       </Text>
