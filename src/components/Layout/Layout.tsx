@@ -11,6 +11,7 @@ import { logout } from "../../api/spotify";
 import { userPlaylistsState } from "../../atom/PlaylistsAtom";
 import { userProfileState } from "../../atom/UserDataAtom";
 import NavBar from "../NavBar/NavBar";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 type LayoutProps = {
   errorElement?: React.ReactNode;
@@ -48,9 +49,9 @@ const Layout = ({ errorElement }: LayoutProps) => {
               direction={{ base: "row", md: "column" }}
               alignItems={{ base: "center", md: "flex-start" }}
               justifyContent={{ base: "space-between" }}
-              bg={{base: "rgba(0, 0, 0, 0.86)", md: 'unset'}}
-              pt={{base: 4, md: 0}}
-              pb={{base: 2, md: 0}}
+              bg={{ base: "rgba(0, 0, 0, 0.86)", md: "unset" }}
+              pt={{ base: 4, md: 0 }}
+              pb={{ base: 2, md: 0 }}
             >
               {navLinks.main.map((link, index: number) => (
                 <Flex
@@ -101,7 +102,11 @@ const Layout = ({ errorElement }: LayoutProps) => {
             </Flex>
             <Stack display={{ base: "none", md: "unset" }} px={2}>
               <Divider />
-              <Flex justifyContent={'space-between'} alignItems={{xl: 'center'}} flexDirection={{md: 'column', xl: 'row'}}>
+              <Flex
+                justifyContent={"space-between"}
+                alignItems={{ xl: "center" }}
+                flexDirection={{ md: "column", xl: "row" }}
+              >
                 <Text color={"gray.300"} fontSize={"0.875rem"} fontWeight={600}>
                   Top 10 Playlists:
                 </Text>
@@ -109,10 +114,10 @@ const Layout = ({ errorElement }: LayoutProps) => {
                   color="brand.600"
                   cursor="pointer"
                   fontSize={"0.875rem"}
-                  fontWeight='semibold'
+                  fontWeight="semibold"
                   _hover={{ color: "brand.900" }}
                   onClick={() => navigate("/playlists")}
-                  mt={{md: 2, xl: 0}}
+                  mt={{ md: 2, xl: 0 }}
                 >
                   View all
                 </Text>
@@ -184,6 +189,30 @@ const Layout = ({ errorElement }: LayoutProps) => {
           </Stack>
         </Stack>
         <Box as="main" ml={{ base: 0, md: 200, xl: 250 }} width={"100%"}>
+          {/* EXPERIMENTATION FOR BACK AND FORWARD BUTTONS */}
+          {/* <Box position={"absolute"} top={40} right={200} zIndex={9999}>
+            <Flex gap={4}>
+              <Box
+                borderWidth={"1px"}
+                transition={"all .3s ease"}
+                borderRadius={"50%"}
+                cursor="pointer"
+                _hover={{ borderColor: "brand.900", color: "brand.900" }}
+                onClick={() => navigate(-1)}
+              >
+                <ChevronLeftIcon fontSize={"5xl"} />
+              </Box>
+              <Box
+                borderWidth={"1px"}
+                transition={"all .3s ease"}
+                borderRadius={"50%"}
+                cursor="pointer"
+                _hover={{ borderColor: "brand.900", color: "brand.900" }}
+              >
+                <ChevronRightIcon fontSize={"5xl"} />
+              </Box>
+            </Flex>
+          </Box> */}
           {errorElement ? errorElement : <Outlet />}
           <Divider mt={8} />
           <Box minH={20} />
