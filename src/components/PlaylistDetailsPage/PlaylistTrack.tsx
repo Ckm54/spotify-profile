@@ -15,7 +15,7 @@ const PlaylistTrack = ({ track }: PlaylistTrackProps) => {
   const navigate = useNavigate();
 
   return (
-    <Box py={2}>
+    <Box py={2} px={{ lg: 4 }} transition={'all .3s ease'} cursor={'pointer'} borderRadius={5} _hover={{backgroundColor: 'blackAlpha.400'}}>
       <Flex gap={4}>
         <Image
           src={track.track.album.images[0]?.url}
