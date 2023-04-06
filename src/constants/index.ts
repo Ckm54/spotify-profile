@@ -16,13 +16,13 @@ export const MONTH_NAMES_SHORT = [
 export const AUDIO_PROPERTIES = [
   "danceability",
   "energy",
-  "key",
-  "loudness",
+  // "key",
+  // "loudness",
   "mode",
   "speechiness",
   "acousticness",
   "instrumentalness",
   "liveness",
   "valence",
-  "tempo",
+  // "tempo",
 ];
