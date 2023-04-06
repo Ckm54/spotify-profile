@@ -11,7 +11,7 @@ import {
   Legend,
   ChartData,
 } from 'chart.js';
-import { Bar, Pie } from 'react-chartjs-2';
+import { Bar, Doughnut, Pie } from 'react-chartjs-2';
 import { TrackAudioFeaturesType } from '../../types';
 import { useQuery } from 'react-query';
 import { getTracksAudioFeatures } from '../api/apiCalls';
@@ -175,6 +175,7 @@ export default function TrackAudioFeaturesChart({ trackIds }: TracksAudioFeature
   return (
     <Box>
       <Bar width={400} height={400} options={options} data={data} />
+      {/* <Doughnut data={data} /> */}
     </Box>
   );
 }
