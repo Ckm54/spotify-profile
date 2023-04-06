@@ -76,28 +76,38 @@ const PlaylistDetailsPage = (props: Props) => {
       ) : (
         <Box maxW={"100%"}>
           <PlaylistDetailHeader playlistInfo={playlistInfo} />
-          <Stack position={"relative"} px={5}>
-            <Flex py={4} alignItems={"center"} gap={8}>
-              <Text color={"#fff"} fontWeight={600}>
-                Tracks on album
-              </Text>
-              <Text color="brand.600">
-                (Total Tracks: {playlistInfo.tracks.total})
-              </Text>
-            </Flex>
-
-            {trackIds && <TracksAudioFeaturesChart trackIds={trackIds} />}
-            <Grid
-              gridTemplateColumns={{
-                lg: "repeat(2, 1fr)",
-                xl: "repeat(3, 1fr)",
-              }}
-            >
-              {playlistInfo.tracks.items.map((track: PlaylistTrackType) => (
-                <GridItem key={track.track.id} mx={{ lg: 4 }}>
-                  <PlaylistTrack track={track} />
-                </GridItem>
-              ))}
+          <Stack position={"relative"} px={5} borderTop={'1px solid'} borderTopColor={'brand.600'} mt={8}>
+            <Grid templateColumns={{lg: "repeat(4, 1fr)"}} gap={4}>
+              <GridItem colSpan={1}>
+                <Flex py={4} alignItems={"center"} gap={8}>
+                  <Text color={"#fff"} fontWeight={600}>
+                    Album's Audio Features
+                  </Text>
+                </Flex>
+                {trackIds && <TracksAudioFeaturesChart trackIds={trackIds} />}
+              </GridItem>
+              <GridItem colSpan={3} borderLeft={'1px solid'} borderLeftColor={'brand.600'} px={4}>
+                <Flex py={4} alignItems={"center"} gap={8}>
+                  <Text color={"#fff"} fontWeight={600}>
+                    Tracks on album
+                  </Text>
+                  <Text color="brand.600">
+                    (Total Tracks: {playlistInfo.tracks.total})
+                  </Text>
+                </Flex>
+                <Grid
+                  gridTemplateColumns={{
+                    lg: "repeat(2, 1fr)",
+                    xl: "repeat(3, 1fr)",
+                  }}
+                >
+                  {playlistInfo.tracks.items.map((track: PlaylistTrackType) => (
+                    <GridItem key={track.track.id}>
+                      <PlaylistTrack track={track} />
+                    </GridItem>
+                  ))}
+                </Grid>
+              </GridItem>
             </Grid>
           </Stack>
         </Box>
