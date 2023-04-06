@@ -44,6 +44,5 @@ export const formatStringEllipsis = (text: string, length: number) => {
 };
 
 // get average from an array
-export const getArrayAverage = (array: number[]) => {
+export const getArrayAverage = (array: number[]) =>
   array.reduce((a, b) => a + b, 0) / array.length;
-}
