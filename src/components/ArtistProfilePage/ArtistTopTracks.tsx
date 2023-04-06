@@ -49,7 +49,7 @@ const ArtistTopTracks = (props: Props) => {
           {artistTopTracks?.tracks.map(
             (track: Track, index: number) =>
               index < 5 && (
-                <TrackInfo track={track} index={index + 1} isArtistTracks />
+                <TrackInfo key={track.id} track={track} index={index + 1} isArtistTracks />
               )
           )}
         </Box>

@@ -51,7 +51,7 @@ const RelatedArtist = ({ artist }: Props) => {
       >
         <Icon fontSize={"2rem"} as={FaInfoCircle} />
         <Text color="white" display={{base: 'none', md: 'unset'}} fontWeight="semibold">
-          {artist.name}
+          {formatStringEllipsis(artist.name, 15)}
         </Text>
         <Text color="white" display={{base: 'unset', md: 'none'}} fontWeight="semibold">
           {formatStringEllipsis(artist.name, 5)}

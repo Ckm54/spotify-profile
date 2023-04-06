@@ -48,7 +48,7 @@ const UserTopArtists = (props: Props) => {
           View all
         </Text>
       </Flex>
-      <Flex justifyContent={"space-evenly"} gap={2} flexWrap={"nowrap"}>
+      <Flex justifyContent={"space-evenly"} gap={2} flexWrap={{base: 'wrap', xl: "nowrap"}}>
         {isLoading ? (
           <Text>Loading...</Text>
         ) : (

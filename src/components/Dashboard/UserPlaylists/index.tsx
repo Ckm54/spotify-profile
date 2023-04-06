@@ -22,7 +22,7 @@ const UserPlaylists = (props: Props) => {
   // }, [userInfo]);
 
   return (
-    <Box flex={1} px={{base: 8, md: 0}}>
+    <Box flex={1} px={{base: 4, md: 0}}>
       <Flex
         my={8}
         justifyContent={"space-between"}
@@ -38,7 +38,7 @@ const UserPlaylists = (props: Props) => {
         </Text>
       </Flex>
 
-      <Flex flexWrap={'wrap'} gap={12} justifyContent={{base: 'space-between', md: 'unset'}} >
+      <Flex flexWrap={'wrap'} gap={{base: 4, md: 12}} justifyContent={{base: 'space-between', md: 'unset'}} >
         {userPlaylists?.items.map(
           (playlist: Playlist, index: number) =>
             index < 5 && <PlaylistCard playlist={playlist} key={playlist.id} detailed={false} />

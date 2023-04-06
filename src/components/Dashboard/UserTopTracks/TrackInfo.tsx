@@ -51,13 +51,13 @@ const TrackInfo = ({ track, index, isArtistTracks }: TrackInfoProps) => {
                 />
               )}
               {track?.artists?.map((artist, index) => {
-                const isNotLastTrack =
+                const isNotLastArtist =
                   track.artists[track.artists.length - 1].id !== artist.id || index !== 2;
                 if (index < 3) return (
                   <Text
                     fontSize={"10pt"}
                     color="gray.400"
-                    mr={isNotLastTrack ? "1px" : 0}
+                    mr={isNotLastArtist ? "1px" : 0}
                     key={artist.id}
                     _hover={{
                       textDecoration: 'underline',
@@ -66,7 +66,7 @@ const TrackInfo = ({ track, index, isArtistTracks }: TrackInfoProps) => {
                     onClick={() => navigate(`/artist/${artist.id}`)}
                   >
                     {artist.name}
-                    {isNotLastTrack && ","}
+                    {isNotLastArtist && ","}
                   </Text>
                 );
               })}

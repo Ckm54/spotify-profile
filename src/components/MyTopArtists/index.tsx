@@ -132,7 +132,7 @@ const MyTopArtists = (props: Props) => {
         <Text>Loading...</Text>
       ) : (
         <Grid
-          templateColumns={{ md: "repeat(3, 1fr)", xl: "repeat(7, 1fr)" }}
+          templateColumns={{base: "repeat(2, 1fr)", md: "repeat(3, 1fr)", xl: "repeat(7, 1fr)" }}
           gap={{ base: 4, xl: 2 }}
         >
           {activeTab.name === "allTime"
