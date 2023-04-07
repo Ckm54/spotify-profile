@@ -11,14 +11,18 @@ import {
 } from "@chakra-ui/react";
 import { MONTH_NAMES_SHORT } from "../constants";
 import { formatStringEllipsis } from "../utils";
+import { useNavigate } from "react-router-dom";
 
 type AlbumCardProps = {
   albumInfo: Album;
 };
 
 const AlbumCard = ({ albumInfo }: AlbumCardProps) => {
+
+  const navigate = useNavigate();
+
   return (
-    <Card cursor="pointer" maxW={"sm"} bg="blackAlpha.200">
+    <Card cursor="pointer" maxW={"sm"} bg="blackAlpha.200" onClick={() => navigate(`/album/${albumInfo.id}`)}>
       <CardBody p={2}>
         <Image
           src={albumInfo.images[0]?.url}
