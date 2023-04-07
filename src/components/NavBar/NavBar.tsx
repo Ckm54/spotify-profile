@@ -38,7 +38,7 @@ const NavBar = (props: Props) => {
           gap={2}
           cursor="pointer"
         >
-          <Image src="../../../public/spotify-white.png" alt="spotify-logo" />
+          <Image w={{base: 8, md: 'unset'}} src="../../../public/spotify-white.png" alt="spotify-logo" />
           <Text color={"#fff"} fontWeight={600} fontSize={{ md: "18pt" }}>
             SpotifyProfile
           </Text>
@@ -57,20 +57,27 @@ const NavBar = (props: Props) => {
               direction={"row"}
               justifyContent="center"
               alignItems={"center"}
+              color='#400073'
+              bg='#dfdbff'
+              borderRadius={'32px'}
+              padding={'4px 8px'}
+              outlineOffset={'6px'}
+              outline={'transparent solid 3px'}
+              _hover={{bg: '#878787'}}
             >
               <Avatar
                 src={userData.images[0]?.url}
-                height={12}
-                width={12}
+                height={8}
+                width={8}
                 borderWidth={2}
               />
-              <Text fontWeight={600} display={{ base: "none", md: "unset" }}>
+              <Text fontWeight={600} fontSize={'10pt'}>
                 {userData.display_name}
               </Text>
               <ChevronDownIcon
-                display={{ base: "none", md: "unset" }}
-                height={30}
-                width={30}
+                // display={{ base: "unset", md: "unset" }}
+                height={18}
+                width={18}
                 borderColor="brand.900"
                 borderWidth={2}
                 borderRadius={50}

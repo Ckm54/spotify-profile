@@ -30,7 +30,7 @@ const Layout = ({ errorElement }: LayoutProps) => {
       <NavBar />
       <Box
         as={"main"}
-        pt={20}
+        pt={'72px'}
         display="flex"
         flexDirection={{ base: "column", md: "row" }}
       >
