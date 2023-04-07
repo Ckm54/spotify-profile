@@ -187,6 +187,22 @@ export const getArtistAlbums = async (artistId: string, groupsIncluded: string) 
 };
 
 /**
+ * Get an album's info
+ * https://developer.spotify.com/documentation/web-api/reference/get-an-album
+ */
+export const getAlbumInfo = async (albumId: string) => {
+  const response = await axios.get(`${BASE_URL}/albums/${albumId}`, {
+    headers,
+  });
+  if (response.status === 200) {
+    const data = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+};
+
+/**
  * Get artist's related artists
  * https://developer.spotify.com/documentation/web-api/reference/get-an-artists-related-artists
  */
@@ -203,8 +219,8 @@ export const getArtistRelatedArtists = async (artistId: string) => {
 };
 
 /**
- * Get artist's related artists
- * https://developer.spotify.com/documentation/web-api/reference/get-an-artists-related-artists
+ * Get a playlist's tracks audio features
+ * https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features
  */
 export const getTracksAudioFeatures = async (trackIds: string) => {
   const response = await axios.get(`${BASE_URL}/audio-features?ids=${trackIds}`, {
