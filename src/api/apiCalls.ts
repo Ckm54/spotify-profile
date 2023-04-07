@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import {
+  AlbumInfoType,
   ArtistAlbumsType,
   ArtistProfile,
   ArtistTopTracksType,
@@ -195,7 +196,7 @@ export const getAlbumInfo = async (albumId: string) => {
     headers,
   });
   if (response.status === 200) {
-    const data = response.data;
+    const data: AlbumInfoType = response.data;
     return data;
   } else {
     return response.statusText;

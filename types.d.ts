@@ -46,7 +46,7 @@ export interface FollowedArtist {
   images: Image[];
   name: string;
   popularity: number;
-  type: Type;
+  type: ArtistType;
   uri: string;
 }
 
@@ -123,15 +123,6 @@ export interface Album {
   uri: string;
 }
 
-export interface Artist {
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  name: string;
-  type: Type;
-  uri: string;
-}
-
 export interface RelatedArtistsData {
   artists: RelatedArtistsType[];
 }
@@ -145,12 +136,8 @@ export interface RelatedArtistsType {
   images: Image[];
   name: string;
   popularity: number;
-  type: Type;
+  type: ArtistType;
   uri: string;
-}
-
-export enum Type {
-  Artist = "artist",
 }
 
 // *PLAYLISTS
@@ -264,12 +251,6 @@ export enum ReleaseDatePrecision {
   Day = "day",
 }
 
-export interface Image {
-  height: number;
-  url: string;
-  width: number;
-}
-
 // ***************************ARTIST PROFILE
 export interface ArtistProfile {
   external_urls: ExternalUrls;
@@ -312,10 +293,6 @@ export interface PlaylistInfoType {
   tracks: PlaylistTracks;
   type: string;
   uri: string;
-}
-
-export interface ExternalUrls {
-  spotify: string;
 }
 
 export interface Followers {
@@ -455,6 +432,94 @@ export interface AudioFeature {
 export enum AudioFeaturesType {
   AudioFeatures = "audio_features",
 }
+
+//*******************************ALBUM INFO TYPE */
+export interface AlbumInfoType {
+  album_group:            string;
+  album_type:             string;
+  artists:                Artist[];
+  available_markets:      string[];
+  copyrights:             Copyright[];
+  external_ids:           AlbumExternalIDS;
+  external_urls:          ExternalUrls;
+  genres:                 any[];
+  href:                   string;
+  id:                     string;
+  images:                 Image[];
+  label:                  string;
+  name:                   string;
+  popularity:             number;
+  release_date:           Date;
+  release_date_precision: string;
+  total_tracks:           number;
+  tracks:                 AlbumTracks;
+  type:                   string;
+  uri:                    string;
+}
+
+export interface Artist {
+  external_urls: ExternalUrls;
+  href:          string;
+  id:            string;
+  name:          string;
+  type:          ArtistType;
+  uri:           string;
+}
+
+export interface ExternalUrls {
+  spotify: string;
+}
+
+export enum ArtistType {
+  Artist = "artist",
+}
+
+export interface Copyright {
+  text: string;
+  type: string;
+}
+
+export interface AlbumExternalIDS {
+  upc: string;
+}
+
+export interface Image {
+  height: number;
+  url:    string;
+  width:  number;
+}
+
+export interface AlbumTracks {
+  href:     string;
+  items:    Item[];
+  limit:    number;
+  next:     null;
+  offset:   number;
+  previous: null;
+  total:    number;
+}
+
+export interface Item {
+  artists:           Artist[];
+  available_markets: string[];
+  disc_number:       number;
+  duration_ms:       number;
+  explicit:          boolean;
+  external_urls:     ExternalUrls;
+  href:              string;
+  id:                string;
+  is_local:          boolean;
+  name:              string;
+  preview_url:       string;
+  track_number:      number;
+  type:              ItemType;
+  uri:               string;
+}
+
+export enum ItemType {
+  Track = "track",
+}
+
 
 // *************************QUERY TYPES
 export interface TopItemsParams {
