@@ -16,7 +16,7 @@ const PlaylistTrack = ({ track }: PlaylistTrackProps) => {
 
   return (
     <Box py={2} px={{ lg: 4 }} transition={'all .3s ease'} cursor={'pointer'} borderRadius={5} _hover={{backgroundColor: 'blackAlpha.400'}}>
-      <Flex gap={4}>
+      <Flex gap={{base: 3, md: 4}}>
         <Image
           src={track.track.album.images[0]?.url}
           alt={track.track.name}
@@ -26,8 +26,9 @@ const PlaylistTrack = ({ track }: PlaylistTrackProps) => {
         />
         <Box w={"100%"}>
           <Flex justifyContent={"space-between"} alignItems={"center"}>
-            <Text>{formatStringEllipsis(track.track.name, 40)}</Text>
-            <Text color={"brand.600"}>
+            <Text display={{base: 'none', md: 'undet'}} fontSize={{base: '12pt'}}>{formatStringEllipsis(track.track.name, 40)}</Text>
+            <Text display={{base: 'block', md: 'none'}} fontSize={{base: '11pt'}}>{formatStringEllipsis(track.track.name, 20)}</Text>
+            <Text fontSize={'10pt'} color={"brand.600"}>
               {formatDurationToMinsAndSecs(track.track.duration_ms)}
             </Text>
           </Flex>

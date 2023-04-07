@@ -62,7 +62,7 @@ const PlaylistDetailHeader = ({ playlistInfo }: PlaylistDetailHeaderProps) => {
               <Text fontSize={"10pt"} fontWeight={600}>
                 {playlistInfo.public ? "Public" : "Private"}
               </Text>
-              <Text fontSize={"5xl"} fontWeight={600}>
+              <Text fontSize={{base: '2xl', md: '4xl', xl: "5xl"}} fontWeight={600}>
                 {playlistInfo.name}
               </Text>
               <Stack mb={4}>

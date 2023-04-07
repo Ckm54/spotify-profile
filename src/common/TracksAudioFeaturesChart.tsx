@@ -173,8 +173,8 @@ export default function TrackAudioFeaturesChart({ trackIds }: TracksAudioFeature
 };
 
   return (
-    <Box>
-      <Bar width={400} height={400} options={options} data={data} />
+    <Box width={{base: '100%'}} height={{base: 300, md: 400}}>
+      <Bar width={'100%'} height={'100%'} options={options} data={data} />
       {/* <Doughnut data={data} /> */}
     </Box>
   );
