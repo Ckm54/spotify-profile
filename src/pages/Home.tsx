@@ -11,6 +11,7 @@ import { userPlaylistsState } from "../atom/PlaylistsAtom";
 import { userProfileState } from "../atom/UserDataAtom";
 import { userFollowedArtistsState } from "../atom/UserFollowedArtists";
 import {
+  AlbumInfoPage,
   ArtistProfilePage,
   Dashboard,
   MyPlaylists,
@@ -97,6 +98,10 @@ const Home = (props: Props) => {
           path: "playlist/:id",
           element: <PlaylistDetailsPage />,
         },
+        {
+          path: 'album/:id',
+          element: <AlbumInfoPage />
+        }
       ],
     },
   ]);
