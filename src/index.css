@@ -30,3 +30,10 @@
     background-color: #f9f9f9;
   } */
 }
+
+@media screen and (max-width: 400px) {
+  canvas {
+    width: 500px;
+    height: 600px;
+  }
+}
