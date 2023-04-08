@@ -81,7 +81,7 @@ const PlaylistDetailsPage = (props: Props) => {
               <GridItem colSpan={1}>
                 <Flex py={4} alignItems={"center"} gap={8}>
                   <Text color={"#fff"} fontWeight={600}>
-                    Album's Audio Features
+                    Playlist's Audio Features
                   </Text>
                 </Flex>
                 {trackIds && <TracksAudioFeaturesChart trackIds={trackIds} />}
