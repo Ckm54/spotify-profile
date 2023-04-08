@@ -57,6 +57,7 @@ export const options = {
       // fontFamily: `${fonts.primary}`,
       fontColor: '#ffffff',
       padding: 30,
+      borderTopRadius: 20,
     },
     legend: {
       display: false,
