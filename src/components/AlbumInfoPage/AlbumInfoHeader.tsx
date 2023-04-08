@@ -1,5 +1,5 @@
 import React from "react";
-import { AlbumInfoType } from "../../../types";
+import { AlbumInfoType, Artist, Copyright } from "../../../types";
 import { Box, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import { FastAverageColor } from "fast-average-color";
 
@@ -58,29 +58,37 @@ const AlbumInfoHeader = ({ albumInfo }: AlbumInfoHeaderProps) => {
             objectFit="cover"
           />
           <Flex gap={4}>
-          <Box>
+            <Box>
               <Text fontSize={"10pt"} fontWeight={600}>
                 {albumInfo.album_type}
               </Text>
-              <Text fontSize={{base: '2xl', md: '4xl', xl: "5xl"}} fontWeight={600}>
+              <Text
+                fontSize={{ base: "2xl", md: "4xl", xl: "5xl" }}
+                fontWeight={600}
+              >
                 {albumInfo.name}
               </Text>
               <Stack mb={4}>
                 <Text fontSize={"10pt"} fontWeight="semibold" mr={2}>
                   {/* Created By: {albumInfo.artists[0]} */}
                 </Text>
+                <Text>{albumInfo.total_tracks} Tracks</Text>
                 <Flex alignItems={"center"} gap={2}>
-                  <Text>{albumInfo.total_tracks} Tracks</Text>
                   <Box h={2} w={2} bg="brand.900" borderRadius={"50%"} />
                   {/* <Text>
                     {playlistInfo.followers.total.toLocaleString()} Follower
                     {playlistInfo.followers.total > 1 && "s"}
                   </Text> */}
+                  {albumInfo.artists.map((artist: Artist) => (
+                    <Text>{artist.name}</Text>
+                  ))}
                 </Flex>
-                {albumInfo.copyrights && <Box>
-                  <Text fontSize={'10pt'} fontWeight={'bold'} color='brand.600'>Description:</Text>
-                  {/* <Text>{albumInfo?.copyrights[0]}</Text> */}
-                </Box>}
+                <Stack fontSize={'10pt'} color='brand.600'>
+                  {albumInfo.copyrights &&
+                    albumInfo.copyrights.map((copyright: Copyright) => (
+                      <Text>{copyright.text}</Text>
+                    ))}
+                </Stack>
               </Stack>
             </Box>
           </Flex>
