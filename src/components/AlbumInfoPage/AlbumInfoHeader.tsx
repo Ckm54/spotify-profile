@@ -69,21 +69,18 @@ const AlbumInfoHeader = ({ albumInfo }: AlbumInfoHeaderProps) => {
                 {albumInfo.name}
               </Text>
               <Stack mb={4}>
-                <Text fontSize={"10pt"} fontWeight="semibold" mr={2}>
-                  {/* Created By: {albumInfo.artists[0]} */}
-                </Text>
+                
+                {albumInfo.artists.map((artist: Artist) => (
+                  <Text fontWeight={'semibold'}>{artist.name}</Text>
+                ))}
                 <Text>{albumInfo.total_tracks} Tracks</Text>
                 <Flex alignItems={"center"} gap={2}>
                   <Box h={2} w={2} bg="brand.900" borderRadius={"50%"} />
-                  {/* <Text>
-                    {playlistInfo.followers.total.toLocaleString()} Follower
-                    {playlistInfo.followers.total > 1 && "s"}
-                  </Text> */}
-                  {albumInfo.artists.map((artist: Artist) => (
-                    <Text>{artist.name}</Text>
-                  ))}
+                  <Text fontSize={"10pt"} fontWeight={600}>
+                    {new Date(albumInfo.release_date).toLocaleDateString()}
+                  </Text>
                 </Flex>
-                <Stack fontSize={'10pt'} color='brand.600'>
+                <Stack fontSize={"10pt"} color="brand.600">
                   {albumInfo.copyrights &&
                     albumInfo.copyrights.map((copyright: Copyright) => (
                       <Text>{copyright.text}</Text>
