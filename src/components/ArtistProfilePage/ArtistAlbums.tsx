@@ -28,11 +28,20 @@ const ArtistAlbums = (props: Props) => {
         <React.Fragment />
       ) : (
         <Box maxW={{ xl: "70%" }}>
-          <Flex justifyContent={"space-between"} alignItems="center" px={5} my={8} >
+          <Flex
+            justifyContent={"space-between"}
+            alignItems="center"
+            px={5}
+            my={8}
+          >
             <Text color={"#fff"} fontWeight={600} mt={{ xl: 4 }}>
               Top Albums
             </Text>
-            <Text color="brand.600">Total: ({artistAlbums?.total})</Text>
+            {artistAlbums?.total && artistAlbums?.total > 5 ? (
+              <Text color="brand.600" cursor={'pointer'} _hover={{textDecoration: 'underline'}}>View all: ({artistAlbums.total})</Text>
+            ) : (
+              <Text color="brand.600">Total: ({artistAlbums?.total})</Text>
+            )}
           </Flex>
 
           {isLoading ? (
