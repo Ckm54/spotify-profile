@@ -3,8 +3,9 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getAlbumInfo } from "../../api/apiCalls";
 import { AlbumInfoType } from "../../../types";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Stack, Text } from "@chakra-ui/react";
 import AlbumInfoHeader from "./AlbumInfoHeader";
+import AlbumTrackInfo from "./AlbumTrackInfo";
 
 type Props = {};
 
@@ -59,6 +60,9 @@ const AlbumInfoPage = (props: Props) => {
       ) : (
         <Box maxW={"100%"}>
           <AlbumInfoHeader albumInfo={albumInfo} />
+          <Stack position={'relative'}>
+            <AlbumTrackInfo albumTracks={albumInfo.tracks} />
+          </Stack>
         </Box>
       )}
     </>

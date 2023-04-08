@@ -79,6 +79,7 @@ const TrackInfo = ({ track, index, isArtistTracks }: TrackInfoProps) => {
           justifyContent={"flex-start"}
           fontSize="0.875rem"
           _hover={{ textDecoration: "underline" }}
+          onClick={() => navigate(`/album/${track.album.id}`)}
         >
           {formatStringEllipsis(track.album.name, 20)}
           {
