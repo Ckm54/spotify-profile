@@ -19,13 +19,13 @@ const AlbumTrack = ({ track, index }: AlbumTrackProps) => {
     <Flex
       cursor={"pointer"}
       gap={4}
-      alignItems={'center'}
+      alignItems={"center"}
       py={2}
       px={5}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       _hover={{
-        bg: 'blackAlpha.400'
+        bg: "blackAlpha.400",
       }}
     >
       {isHovering ? (
@@ -35,7 +35,7 @@ const AlbumTrack = ({ track, index }: AlbumTrackProps) => {
       )}
       <Box width={"100%"}>
         <Flex justifyContent={"space-between"}>
-          <Text>{track.name}</Text>
+          <Text _hover={{textDecoration: 'underline'}} onClick={() => navigate(`/track/${track.id}`)}>{track.name}</Text>
           <Text color="brand.600">
             {formatDurationToMinsAndSecs(track.duration_ms)}
           </Text>
@@ -47,7 +47,13 @@ const AlbumTrack = ({ track, index }: AlbumTrackProps) => {
 
           <Flex gap={1}>
             {track.artists.map((artist: Artist) => (
-              <Text key={artist.id} fontSize={"10pt"} color="brand.600" _hover={{textDecoration: 'underline'}} onClick={() => navigate(`/artist/${artist.id}`)}>
+              <Text
+                key={artist.id}
+                fontSize={"10pt"}
+                color="brand.600"
+                _hover={{ textDecoration: "underline" }}
+                onClick={() => navigate(`/artist/${artist.id}`)}
+              >
                 {artist.name}
                 {track.artists.indexOf(artist) !== track.artists.length - 1 &&
                   ","}

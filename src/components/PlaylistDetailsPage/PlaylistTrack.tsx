@@ -26,7 +26,7 @@ const PlaylistTrack = ({ track }: PlaylistTrackProps) => {
         />
         <Box w={"100%"}>
           <Flex justifyContent={"space-between"} alignItems={"center"}>
-            <Text display={{base: 'none', md: 'undet'}} fontSize={{base: '12pt'}}>{formatStringEllipsis(track.track.name, 40)}</Text>
+            <Text display={{base: 'none', md: 'undet'}} fontSize={{base: '12pt'}} _hover={{textDecoration: 'underline'}} onClick={() => navigate(`/track/${track.track.id}`)}>{formatStringEllipsis(track.track.name, 40)}</Text>
             <Text display={{base: 'block', md: 'none'}} fontSize={{base: '11pt'}}>{formatStringEllipsis(track.track.name, 20)}</Text>
             <Text fontSize={'10pt'} color={"brand.600"}>
               {formatDurationToMinsAndSecs(track.track.duration_ms)}
