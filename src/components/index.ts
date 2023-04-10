@@ -8,6 +8,7 @@ import MyTopTracks from "./MyTopTracks";
 import ArtistProfilePage from "./ArtistProfilePage";
 import PlaylistDetailsPage from "./PlaylistDetailsPage";
 import AlbumInfoPage from "./AlbumInfoPage";
+import TrackDetailsPage from "./TrackDetailsPage";
 
 export {
   NavBar,
@@ -20,4 +21,5 @@ export {
   ArtistProfilePage,
   PlaylistDetailsPage,
   AlbumInfoPage,
+  TrackDetailsPage,
 };
