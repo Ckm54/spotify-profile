@@ -19,6 +19,7 @@ import {
   MyTopArtists,
   MyTopTracks,
   PlaylistDetailsPage,
+  TrackDetailsPage,
 } from "../components";
 import Layout from "../components/Layout/Layout";
 import ErrorPage from "./ErrorPage";
@@ -99,9 +100,13 @@ const Home = (props: Props) => {
           element: <PlaylistDetailsPage />,
         },
         {
-          path: 'album/:id',
-          element: <AlbumInfoPage />
-        }
+          path: "album/:id",
+          element: <AlbumInfoPage />,
+        },
+        {
+          path: "track/:id",
+          element: <TrackDetailsPage />,
+        },
       ],
     },
   ]);
