@@ -7,6 +7,7 @@ import {
   ArtistProfile,
   ArtistTopTracksType,
   ArtistsFollowed,
+  AudioFeature,
   Playlists,
   RecentPlays,
   RelatedArtistsData,
@@ -14,6 +15,7 @@ import {
   TopItemsParams,
   TopTracks,
   TrackAudioFeaturesType,
+  TrackInfoResponseType,
   UserProfile
 } from "../../types";
 import { getAccessToken } from "./spotify";
@@ -229,6 +231,38 @@ export const getTracksAudioFeatures = async (trackIds: string) => {
   });
   if (response.status === 200) {
     const data: TrackAudioFeaturesType = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+};
+
+/**
+ * Get a track's detailed information
+ * https://developer.spotify.com/documentation/web-api/reference/get-track
+ */
+export const getTrackDetails = async (trackId: string) => {
+  const response = await axios.get(`${BASE_URL}/tracks/${trackId}`, {
+    headers,
+  });
+  if (response.status === 200) {
+    const data: TrackInfoResponseType = response.data;
+    return data;
+  } else {
+    return response.statusText;
+  }
+};
+
+/**
+ * Get a single track's audio features
+ * https://developer.spotify.com/documentation/web-api/reference/get-audio-features
+ */
+export const getTrackAudioFeatures = async (trackId: string) => {
+  const response = await axios.get(`${BASE_URL}/audio-features/${trackId}`, {
+    headers,
+  });
+  if (response.status === 200) {
+    const data: AudioFeature = response.data;
     return data;
   } else {
     return response.statusText;
