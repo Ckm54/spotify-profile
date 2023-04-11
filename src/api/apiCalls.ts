@@ -16,7 +16,7 @@ import {
   TopTracks,
   TrackAudioFeaturesType,
   TrackInfoResponseType,
-  UserProfile
+  UserProfile,
 } from "../../types";
 import { getAccessToken } from "./spotify";
 
@@ -111,9 +111,12 @@ export const getUserPlaylists = async (userId: string) => {
  * https://developer.spotify.com/documentation/web-api/reference/get-playlist
  */
 export const getPlaylistInfo = async (playlistId: string, country: string) => {
-  const response = await axios.get(`${BASE_URL}/playlists/${playlistId}?country=${country}`, {
-    headers,
-  });
+  const response = await axios.get(
+    `${BASE_URL}/playlists/${playlistId}?country=${country}`,
+    {
+      headers,
+    }
+  );
   if (response.status === 200) {
     const data = response.data;
     return data;
@@ -177,10 +180,16 @@ export const getArtistTopTracks = async (artistId: string, country: string) => {
  * https://developer.spotify.com/documentation/web-api/reference/get-an-artists-albums
  * ?country=${country}
  */
-export const getArtistAlbums = async (artistId: string, groupsIncluded: string) => {
-  const response = await axios.get(`${BASE_URL}/artists/${artistId}/albums?include_groups=${groupsIncluded}`, {
-    headers,
-  });
+export const getArtistAlbums = async (
+  artistId: string,
+  groupsIncluded: string
+) => {
+  const response = await axios.get(
+    `${BASE_URL}/artists/${artistId}/albums?include_groups=${groupsIncluded}`,
+    {
+      headers,
+    }
+  );
   if (response.status === 200) {
     const data: ArtistAlbumsType = response.data;
     return data;
@@ -210,9 +219,12 @@ export const getAlbumInfo = async (albumId: string) => {
  * https://developer.spotify.com/documentation/web-api/reference/get-an-artists-related-artists
  */
 export const getArtistRelatedArtists = async (artistId: string) => {
-  const response = await axios.get(`${BASE_URL}/artists/${artistId}/related-artists`, {
-    headers,
-  });
+  const response = await axios.get(
+    `${BASE_URL}/artists/${artistId}/related-artists`,
+    {
+      headers,
+    }
+  );
   if (response.status === 200) {
     const data: RelatedArtistsData = response.data;
     return data;
@@ -226,9 +238,12 @@ export const getArtistRelatedArtists = async (artistId: string) => {
  * https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features
  */
 export const getTracksAudioFeatures = async (trackIds: string) => {
-  const response = await axios.get(`${BASE_URL}/audio-features?ids=${trackIds}`, {
-    headers,
-  });
+  const response = await axios.get(
+    `${BASE_URL}/audio-features?ids=${trackIds}`,
+    {
+      headers,
+    }
+  );
   if (response.status === 200) {
     const data: TrackAudioFeaturesType = response.data;
     return data;

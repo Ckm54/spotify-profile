@@ -1,6 +1,6 @@
-// 
+//
 
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,14 +10,14 @@ import {
   Tooltip,
   Legend,
   ChartData,
-} from 'chart.js';
-import { Bar, Doughnut, Pie } from 'react-chartjs-2';
-import { TrackAudioFeaturesType } from '../../types';
-import { useQuery } from 'react-query';
-import { getTracksAudioFeatures } from '../api/apiCalls';
-import { AUDIO_PROPERTIES } from '../constants';
-import { getArrayAverage } from '../utils';
-import { Box } from '@chakra-ui/react';
+} from "chart.js";
+import { Bar, Doughnut, Pie } from "react-chartjs-2";
+import { TrackAudioFeaturesType } from "../../types";
+import { useQuery } from "react-query";
+import { getTracksAudioFeatures } from "../api/apiCalls";
+import { AUDIO_PROPERTIES } from "../constants";
+import { getArrayAverage } from "../utils";
+import { Box } from "@chakra-ui/react";
 
 type TracksAudioFeaturesChartProps = {
   trackIds: string;
@@ -55,7 +55,7 @@ export const options = {
       text: `Audio Features`,
       fontSize: 18,
       // fontFamily: `${fonts.primary}`,
-      fontColor: '#ffffff',
+      fontColor: "#ffffff",
       padding: 30,
       borderTopRadius: 20,
     },
@@ -66,7 +66,7 @@ export const options = {
       xAxes: [
         {
           gridLines: {
-            color: 'rgba(255, 255, 255, 0.3)',
+            color: "rgba(255, 255, 255, 0.3)",
           },
           ticks: {
             // fontFamily: `${fonts.primary}`,
@@ -77,7 +77,7 @@ export const options = {
       yAxes: [
         {
           gridLines: {
-            color: 'rgba(255, 255, 255, 0.3)',
+            color: "rgba(255, 255, 255, 0.3)",
           },
           ticks: {
             beginAtZero: true,
@@ -88,16 +88,17 @@ export const options = {
       ],
     },
   },
-  };
+};
 
-export default function TrackAudioFeaturesChart({ trackIds }: TracksAudioFeaturesChartProps) {
-
+export default function TrackAudioFeaturesChart({
+  trackIds,
+}: TracksAudioFeaturesChartProps) {
   const [trackAudioFeatues, setTrackAudioFeatues] =
     React.useState<TrackAudioFeaturesType>({
       audio_features: [],
     });
-  const[chartData, setChartData] = React.useState<number[]>()
-  const[labels, setLabels] = React.useState<string[]>([])
+  const [chartData, setChartData] = React.useState<number[]>();
+  const [labels, setLabels] = React.useState<string[]>([]);
 
   const {} = useQuery(
     ["getTrackAudioFeatures"],
@@ -126,9 +127,9 @@ export default function TrackAudioFeaturesChart({ trackIds }: TracksAudioFeature
 
   React.useEffect(() => {
     const ds = createDataset(trackAudioFeatues.audio_features);
-    
+
     setLabels(Object.keys(ds));
-    setChartData(Object.values(ds))
+    setChartData(Object.values(ds));
 
     // const data = {
     //   labels,
@@ -140,48 +141,44 @@ export default function TrackAudioFeaturesChart({ trackIds }: TracksAudioFeature
     //     },
     //   ],
     // };
-
   }, [trackAudioFeatues]);
 
-
- const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 2',
-      data: chartData,
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.3)',
-        'rgba(255, 159, 64, 0.3)',
-        'rgba(255, 206, 86, 0.3)',
-        'rgba(75, 192, 192, 0.3)',
-        'rgba(54, 162, 235, 0.3)',
-        'rgba(104, 132, 245, 0.3)',
-        'rgba(153, 102, 255, 0.3)',
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(255, 159, 64, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(104, 132, 245, 1)',
-        'rgba(153, 102, 255, 1)',
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Dataset 2",
+        data: chartData,
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.3)",
+          "rgba(255, 159, 64, 0.3)",
+          "rgba(255, 206, 86, 0.3)",
+          "rgba(75, 192, 192, 0.3)",
+          "rgba(54, 162, 235, 0.3)",
+          "rgba(104, 132, 245, 0.3)",
+          "rgba(153, 102, 255, 0.3)",
+        ],
+        borderColor: [
+          "rgba(255,99,132,1)",
+          "rgba(255, 159, 64, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(104, 132, 245, 1)",
+          "rgba(153, 102, 255, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
 
   return (
-    <Box width={{base: '100%'}} height={{base: 300, md: 400}}>
-      <Bar width={'100%'} height={'100%'} options={options} data={data} />
+    <Box width={{ base: "100%" }} height={{ base: 300, md: 400 }}>
+      <Bar width={"100%"} height={"100%"} options={options} data={data} />
       {/* <Doughnut data={data} /> */}
     </Box>
   );
 }
-
-
 
 /**
  * import React from "react";
