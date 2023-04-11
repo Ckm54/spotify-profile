@@ -35,7 +35,12 @@ const AlbumTrack = ({ track, index }: AlbumTrackProps) => {
       )}
       <Box width={"100%"}>
         <Flex justifyContent={"space-between"}>
-          <Text _hover={{textDecoration: 'underline'}} onClick={() => navigate(`/track/${track.id}`)}>{track.name}</Text>
+          <Text
+            _hover={{ textDecoration: "underline" }}
+            onClick={() => navigate(`/track/${track.id}`)}
+          >
+            {track.name}
+          </Text>
           <Text color="brand.600">
             {formatDurationToMinsAndSecs(track.duration_ms)}
           </Text>
