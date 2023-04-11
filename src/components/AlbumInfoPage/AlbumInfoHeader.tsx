@@ -69,9 +69,8 @@ const AlbumInfoHeader = ({ albumInfo }: AlbumInfoHeaderProps) => {
                 {albumInfo.name}
               </Text>
               <Stack mb={4}>
-                
                 {albumInfo.artists.map((artist: Artist) => (
-                  <Text fontWeight={'semibold'}>{artist.name}</Text>
+                  <Text fontWeight={"semibold"}>{artist.name}</Text>
                 ))}
                 <Text>{albumInfo.total_tracks} Tracks</Text>
                 <Flex alignItems={"center"} gap={2}>
