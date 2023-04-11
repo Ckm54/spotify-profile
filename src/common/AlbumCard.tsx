@@ -18,11 +18,15 @@ type AlbumCardProps = {
 };
 
 const AlbumCard = ({ albumInfo }: AlbumCardProps) => {
-
   const navigate = useNavigate();
 
   return (
-    <Card cursor="pointer" maxW={"sm"} bg="blackAlpha.200" onClick={() => navigate(`/album/${albumInfo.id}`)}>
+    <Card
+      cursor="pointer"
+      maxW={"sm"}
+      bg="blackAlpha.200"
+      onClick={() => navigate(`/album/${albumInfo.id}`)}
+    >
       <CardBody p={2}>
         <Image
           src={albumInfo.images[0]?.url}
@@ -32,10 +36,10 @@ const AlbumCard = ({ albumInfo }: AlbumCardProps) => {
           objectFit={"cover"}
         />
         <Box color={"brand.500"} my={2}>
-            <Text fontSize={"11pt"} py={1}>
-              {formatStringEllipsis(albumInfo.name, 18)}
-            </Text>
-          <Flex alignItems={'center'} gap={2}mb={1}>
+          <Text fontSize={"11pt"} py={1}>
+            {formatStringEllipsis(albumInfo.name, 18)}
+          </Text>
+          <Flex alignItems={"center"} gap={2} mb={1}>
             <Box h={2} w={2} bg="brand.900" borderRadius={"50%"} />
             <Text fontSize={"10pt"}>
               (
