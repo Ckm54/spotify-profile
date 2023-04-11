@@ -9,7 +9,7 @@ type AlbumTrackInfoProps = {
 
 const AlbumTrackInfo = ({ albumTracks }: AlbumTrackInfoProps) => {
   return (
-    <Box px={4} borderTop={'1px solid'} borderTopColor={'brand.600'} mt={8}>
+    <Box px={4} borderTop={"1px solid"} borderTopColor={"brand.600"} mt={8}>
       <Text color={"#fff"} fontWeight={600} py={4}>
         Tracks on album ({albumTracks.total})
       </Text>
