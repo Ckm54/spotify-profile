@@ -398,26 +398,26 @@ export enum AudioFeaturesType {
 
 //*******************************ALBUM INFO TYPE */
 export interface AlbumInfoType {
-  album_group:            string;
-  album_type:             string;
-  artists:                Artist[];
-  available_markets:      string[];
-  copyrights:             Copyright[];
-  external_ids:           AlbumExternalIDS;
-  external_urls:          ExternalUrls;
-  genres:                 any[];
-  href:                   string;
-  id:                     string;
-  images:                 Image[];
-  label:                  string;
-  name:                   string;
-  popularity:             number;
-  release_date:           Date;
+  album_group: string;
+  album_type: string;
+  artists: Artist[];
+  available_markets: string[];
+  copyrights: Copyright[];
+  external_ids: AlbumExternalIDS;
+  external_urls: ExternalUrls;
+  genres: any[];
+  href: string;
+  id: string;
+  images: Image[];
+  label: string;
+  name: string;
+  popularity: number;
+  release_date: Date;
   release_date_precision: string;
-  total_tracks:           number;
-  tracks:                 AlbumTracks;
-  type:                   string;
-  uri:                    string;
+  total_tracks: number;
+  tracks: AlbumTracks;
+  type: string;
+  uri: string;
 }
 
 export enum ArtistType {
@@ -434,82 +434,81 @@ export interface AlbumExternalIDS {
 }
 
 export interface AlbumTracks {
-  href:     string;
-  items:    Item[];
-  limit:    number;
-  next:     null;
-  offset:   number;
+  href: string;
+  items: Item[];
+  limit: number;
+  next: null;
+  offset: number;
   previous: null;
-  total:    number;
+  total: number;
 }
 
 export interface Item {
-  artists:           Artist[];
+  artists: Artist[];
   available_markets: string[];
-  disc_number:       number;
-  duration_ms:       number;
-  explicit:          boolean;
-  external_urls:     ExternalUrls;
-  href:              string;
-  id:                string;
-  is_local:          boolean;
-  name:              string;
-  preview_url:       string;
-  track_number:      number;
-  type:              ItemType;
-  uri:               string;
+  disc_number: number;
+  duration_ms: number;
+  explicit: boolean;
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  is_local: boolean;
+  name: string;
+  preview_url: string;
+  track_number: number;
+  type: ItemType;
+  uri: string;
 }
 
 export enum ItemType {
   Track = "track",
 }
 
-
 //*****************************TRACK INFORMATION RESPONSE */
 export interface TrackInfoResponseType {
-  album:             Album;
-  artists:           Artist[];
+  album: Album;
+  artists: Artist[];
   available_markets: string[];
-  disc_number:       number;
-  duration_ms:       number;
-  explicit:          boolean;
-  external_ids:      ExternalIDS;
-  external_urls:     ExternalUrls;
-  href:              string;
-  id:                string;
-  is_local:          boolean;
-  name:              string;
-  popularity:        number;
-  preview_url:       null;
-  track_number:      number;
-  type:              string;
-  uri:               string;
+  disc_number: number;
+  duration_ms: number;
+  explicit: boolean;
+  external_ids: ExternalIDS;
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  is_local: boolean;
+  name: string;
+  popularity: number;
+  preview_url: null;
+  track_number: number;
+  type: string;
+  uri: string;
 }
 
 export interface Album {
-  album_group:            string;
-  album_type:             string;
-  artists:                Artist[];
-  available_markets:      string[];
-  external_urls:          ExternalUrls;
-  href:                   string;
-  id:                     string;
-  images:                 Image[];
-  name:                   string;
-  release_date:           Date;
+  album_group: string;
+  album_type: string;
+  artists: Artist[];
+  available_markets: string[];
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  images: Image[];
+  name: string;
+  release_date: Date;
   release_date_precision: string;
-  total_tracks:           number;
-  type:                   string;
-  uri:                    string;
+  total_tracks: number;
+  type: string;
+  uri: string;
 }
 
 export interface Artist {
   external_urls: ExternalUrls;
-  href:          string;
-  id:            string;
-  name:          string;
-  type:          string;
-  uri:           string;
+  href: string;
+  id: string;
+  name: string;
+  type: string;
+  uri: string;
 }
 
 export interface ExternalUrls {
@@ -518,14 +517,13 @@ export interface ExternalUrls {
 
 export interface Image {
   height: number;
-  url:    string;
-  width:  number;
+  url: string;
+  width: number;
 }
 
 export interface ExternalIDS {
   isrc: string;
 }
-
 
 // *************************QUERY TYPES
 export interface TopItemsParams {
