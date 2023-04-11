@@ -60,7 +60,7 @@ const AlbumInfoPage = (props: Props) => {
       ) : (
         <Box maxW={"100%"}>
           <AlbumInfoHeader albumInfo={albumInfo} />
-          <Stack position={'relative'}>
+          <Stack position={"relative"}>
             <AlbumTrackInfo albumTracks={albumInfo.tracks} />
           </Stack>
         </Box>
