@@ -38,7 +38,13 @@ const ArtistAlbums = (props: Props) => {
               Top Albums
             </Text>
             {artistAlbums?.total && artistAlbums?.total > 5 ? (
-              <Text color="brand.600" cursor={'pointer'} _hover={{textDecoration: 'underline'}}>View all: ({artistAlbums.total})</Text>
+              <Text
+                color="brand.600"
+                cursor={"pointer"}
+                _hover={{ textDecoration: "underline" }}
+              >
+                View all: ({artistAlbums.total})
+              </Text>
             ) : (
               <Text color="brand.600">Total: ({artistAlbums?.total})</Text>
             )}
