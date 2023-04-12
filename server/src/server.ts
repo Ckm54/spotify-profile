@@ -68,7 +68,7 @@ app.get("/callback", (req: Request, res: Response) => {
   params.append("error", "state_mismatch")
 
   if (state === null || state !== storedState) {
-    res.redirect(`#${params.toString()}`);
+    res.redirect(`/#${params.toString()}`);
   } else {
     res.clearCookie(stateKey);
     const authOptions = {
