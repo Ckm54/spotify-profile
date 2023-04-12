@@ -7,7 +7,7 @@ import { tokenState } from "../atom/TokenAtom";
 const LOGIN_URI =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:8080/login"
-    : "https://spotify-profile.onrender.com";
+    : "https://spotify-profile.onrender.com/login";
 
 type Props = {};
 
