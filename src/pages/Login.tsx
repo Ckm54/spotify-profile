@@ -1,4 +1,5 @@
 import { Button, Image, Stack, Text } from "@chakra-ui/react";
+import SpotifyLogo from "../assets/spotify-2.svg";
 
 const LOGIN_URI =
   process.env.NODE_ENV !== "production"
@@ -20,7 +21,7 @@ const Login = (props: Props) => {
       minWidth="100vw"
       gap={5}
     >
-      <Image src='../assets/spotify-1.svg' alt="spotify-logo" height={50} width={50} />
+      <Image src={SpotifyLogo} alt="spotify-logo" height={50} width={50} />
       <Text fontSize={"24px"} my={4}>
         My spotify profile
       </Text>
