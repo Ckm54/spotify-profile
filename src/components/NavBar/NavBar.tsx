@@ -39,7 +39,7 @@ const NavBar = (props: Props) => {
           gap={2}
           cursor="pointer"
         >
-          <Image w={{base: 8, md: 'unset'}} src={SpotifyLogo} alt="spotify-logo" />
+          <Image w={{base: 8}} src={SpotifyLogo} alt="spotify-logo" />
           <Text color={"#fff"} fontWeight={600} fontSize={{ md: "18pt" }}>
             SpotifyProfile
           </Text>
