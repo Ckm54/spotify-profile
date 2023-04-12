@@ -9,8 +9,8 @@ dotenv.config();
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-let REDIRECT_URI = process.env.REDIRECT_URI || "http://localhost:8080/callback";
-let FRONTEND_URI = process.env.FRONTEND_URI || "http://localhost:5173";
+let REDIRECT_URI = process.env.REDIRECT_URI;
+let FRONTEND_URI = process.env.FRONTEND_URI;
 const port = process.env.PORT || 8080;
 
 if (process.env.NODE_ENV !== "production") {
