@@ -14,6 +14,7 @@ import { RxDashboard } from "react-icons/rx";
 import { useRecoilState } from "recoil";
 import { logout } from "../../api/spotify";
 import { userProfileState } from "../../atom/UserDataAtom";
+import SpotifyLogo from '../../assets/spotify-2.svg'
 
 type Props = {};
 
@@ -38,7 +39,7 @@ const NavBar = (props: Props) => {
           gap={2}
           cursor="pointer"
         >
-          <Image w={{base: 8, md: 'unset'}} src="../../../public/spotify-white.png" alt="spotify-logo" />
+          <Image w={{base: 8, md: 'unset'}} src={SpotifyLogo} alt="spotify-logo" />
           <Text color={"#fff"} fontWeight={600} fontSize={{ md: "18pt" }}>
             SpotifyProfile
           </Text>
