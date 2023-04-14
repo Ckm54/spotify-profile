@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getTrackAudioFeatures, getTrackDetails } from "../../api/apiCalls";
 import { Box, Text } from "@chakra-ui/react";
 import { AudioFeature, TrackInfoResponseType } from "../../../types";
+import TrackDetailsHeader from "./TrackDetailsHeader";
 
 type TrackDetailsPageProps = {};
 
@@ -39,8 +40,10 @@ const TrackDetailsPage = (props: TrackDetailsPageProps) => {
     }
   );
 
+  if(!trackDetails) return;
+
   return (
-    <>{isLoading ? <Text>Loading...</Text> : <Box>Track Details page</Box>}</>
+    <>{isLoading ? <Text>Loading...</Text> : <Box><TrackDetailsHeader trackInfo={trackDetails} /></Box>}</>
   );
 };
 
