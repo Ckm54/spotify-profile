@@ -3,10 +3,14 @@ import React from "react";
 import PlaylistDetailHeader from "./PlaylistDetailHeader";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { getPlaylistInfo } from "../../api/apiCalls";
+import { getPlaylistInfo, getTracksAudioFeatures } from "../../api/apiCalls";
 import { useRecoilState } from "recoil";
 import { userProfileState } from "../../atom/UserDataAtom";
-import { PlaylistInfoType, PlaylistTrackType } from "../../../types";
+import {
+  PlaylistInfoType,
+  PlaylistTrackType,
+  TrackAudioFeaturesType,
+} from "../../../types";
 import PlaylistTrack from "./PlaylistTrack";
 import { TracksAudioFeaturesChart } from "../../common";
 
@@ -54,6 +58,23 @@ const PlaylistDetailsPage = (props: Props) => {
     uri: "",
   });
 
+  const [trackAudioFeatures, setTrackAudioFeatures] =
+    React.useState<TrackAudioFeaturesType>({
+      audio_features: [],
+    });
+  const { isLoading: loadingAudioFeatures } = useQuery(
+    ["getTrackAudioFeatures", trackIds],
+    () => getTracksAudioFeatures(trackIds),
+    {
+      onSuccess: (data: TrackAudioFeaturesType) => {
+        setTrackAudioFeatures(data);
+        // const properties = data.audio_features.map((feature: AudioFeature) => Object.keys(feature))
+        // setAudioProperties(properties[0])
+      },
+      enabled: !!trackIds,
+    }
+  );
+
   const { isLoading, isRefetching } = useQuery(
     ["getPlaylistInfo", id],
     () => getPlaylistInfo(id!, userInfo.country),
@@ -71,22 +92,37 @@ const PlaylistDetailsPage = (props: Props) => {
 
   return (
     <>
-      {isLoading || isRefetching ? (
+      {isLoading || isRefetching || loadingAudioFeatures ? (
         <Text>Loading...</Text>
       ) : (
         <Box maxW={"100%"}>
           <PlaylistDetailHeader playlistInfo={playlistInfo} />
-          <Stack position={"relative"} px={5} borderTop={'1px solid'} borderTopColor={'brand.600'} mt={8}>
-            <Grid templateColumns={{lg: "repeat(4, 1fr)"}} gap={4}>
+          <Stack
+            position={"relative"}
+            px={5}
+            borderTop={"1px solid"}
+            borderTopColor={"brand.600"}
+            mt={8}
+          >
+            <Grid templateColumns={{ lg: "repeat(4, 1fr)" }} gap={4}>
               <GridItem colSpan={1}>
                 <Flex py={4} alignItems={"center"} gap={8}>
                   <Text color={"#fff"} fontWeight={600}>
                     Playlist's Audio Features
                   </Text>
                 </Flex>
-                {trackIds && <TracksAudioFeaturesChart trackIds={trackIds} />}
+                {trackIds && (
+                  <TracksAudioFeaturesChart
+                    trackAudioFeatures={trackAudioFeatures}
+                  />
+                )}
               </GridItem>
-              <GridItem colSpan={3} borderLeft={'1px solid'} borderLeftColor={'brand.600'} px={4}>
+              <GridItem
+                colSpan={3}
+                borderLeft={"1px solid"}
+                borderLeftColor={"brand.600"}
+                px={4}
+              >
                 <Flex py={4} alignItems={"center"} gap={8}>
                   <Text color={"#fff"} fontWeight={600}>
                     Tracks on album
