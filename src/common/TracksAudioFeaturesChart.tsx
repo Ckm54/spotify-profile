@@ -1,26 +1,24 @@
 //
 
-import React from "react";
+import { Box } from "@chakra-ui/react";
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
   Title,
   Tooltip,
-  Legend,
-  ChartData,
 } from "chart.js";
-import { Bar, Doughnut, Pie } from "react-chartjs-2";
+import React from "react";
+import { Bar } from "react-chartjs-2";
 import { TrackAudioFeaturesType } from "../../types";
-import { useQuery } from "react-query";
-import { getTracksAudioFeatures } from "../api/apiCalls";
 import { AUDIO_PROPERTIES } from "../constants";
 import { getArrayAverage } from "../utils";
-import { Box } from "@chakra-ui/react";
 
 type TracksAudioFeaturesChartProps = {
   trackIds: string;
+  trackAudioFeatures: TrackAudioFeaturesType;
 };
 
 ChartJS.register(
@@ -92,25 +90,10 @@ export const options = {
 
 export default function TrackAudioFeaturesChart({
   trackIds,
+  trackAudioFeatures,
 }: TracksAudioFeaturesChartProps) {
-  const [trackAudioFeatues, setTrackAudioFeatues] =
-    React.useState<TrackAudioFeaturesType>({
-      audio_features: [],
-    });
   const [chartData, setChartData] = React.useState<number[]>();
   const [labels, setLabels] = React.useState<string[]>([]);
-
-  const {} = useQuery(
-    ["getTrackAudioFeatures"],
-    () => getTracksAudioFeatures(trackIds),
-    {
-      onSuccess: (data: TrackAudioFeaturesType) => {
-        setTrackAudioFeatues(data);
-        // const properties = data.audio_features.map((feature: AudioFeature) => Object.keys(feature))
-        // setAudioProperties(properties[0])
-      },
-    }
-  );
 
   const createDataset = (audioFeatures: any) => {
     const dataset: { [key: string]: number } = {};
@@ -126,7 +109,7 @@ export default function TrackAudioFeaturesChart({
   };
 
   React.useEffect(() => {
-    const ds = createDataset(trackAudioFeatues.audio_features);
+    const ds = createDataset(trackAudioFeatures.audio_features);
 
     setLabels(Object.keys(ds));
     setChartData(Object.values(ds));
@@ -141,7 +124,7 @@ export default function TrackAudioFeaturesChart({
     //     },
     //   ],
     // };
-  }, [trackAudioFeatues]);
+  }, [trackAudioFeatures]);
 
   const data = {
     labels,
