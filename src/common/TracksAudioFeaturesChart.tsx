@@ -17,7 +17,6 @@ import { AUDIO_PROPERTIES } from "../constants";
 import { getArrayAverage } from "../utils";
 
 type TracksAudioFeaturesChartProps = {
-  trackIds: string;
   trackAudioFeatures: TrackAudioFeaturesType;
 };
 
@@ -89,7 +88,6 @@ export const options = {
 };
 
 export default function TrackAudioFeaturesChart({
-  trackIds,
   trackAudioFeatures,
 }: TracksAudioFeaturesChartProps) {
   const [chartData, setChartData] = React.useState<number[]>();
