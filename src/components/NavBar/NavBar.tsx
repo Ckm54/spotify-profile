@@ -14,7 +14,7 @@ import { RxDashboard } from "react-icons/rx";
 import { useRecoilState } from "recoil";
 import { logout } from "../../api/spotify";
 import { userProfileState } from "../../atom/UserDataAtom";
-import SpotifyLogo from '../../assets/spotify-2.svg'
+import SpotifyLogo from "../../assets/spotify-2.svg";
 
 type Props = {};
 
@@ -23,88 +23,101 @@ const NavBar = (props: Props) => {
 
   return (
     <nav>
-      <Flex
-        justifyContent={"space-between"}
-        py={3}
-        bg="rgba(0, 0, 0, 0.86)"
-        px={{base: '8px', md: "32px"}}
-        position="fixed"
-        zIndex={10}
-        as={"header"}
-        w="100vw"
-      >
+      <Flex position={"fixed"} flexDirection={"column"} zIndex={10}>
         <Flex
           justifyContent={"center"}
-          alignItems="center"
+          alignItems={"center"}
+          bg="rgba(0, 0, 0, 0.96)"
           gap={2}
-          cursor="pointer"
         >
-          <Image w={{base: 8}} src={SpotifyLogo} alt="spotify-logo" />
-          <Text color={"#fff"} fontWeight={600} fontSize={{ md: "18pt" }}>
-            SpotifyProfile
+          <Text>Polite Note:</Text>
+          <Text fontSize={"10pt"}>
+            This application is currently still under development and some links
+            and features may not work as expected. Apologies for any
+            inconvenience caused.
           </Text>
         </Flex>
-        <Menu>
-          <MenuButton
-            // borderWidth={"0.13rem"}
-            transition="all 0.2s"
-            // borderRadius={50}
-            px={{md: 4}}
-            py={1}
-            _hover={{ color: "brand.900", borderColor: "brand.900" }}
-            _expanded={{ color: "brand.900", borderColor: "brand.900" }}
+        <Flex
+          justifyContent={"space-between"}
+          py={3}
+          bg="rgba(0, 0, 0, 0.86)"
+          px={{ base: "8px", md: "32px" }}
+          as={"header"}
+          w="100vw"
+        >
+          <Flex
+            justifyContent={"center"}
+            alignItems="center"
+            gap={2}
+            cursor="pointer"
           >
-            <Stack
-              direction={"row"}
-              justifyContent="center"
-              alignItems={"center"}
-              color='#400073'
-              bg='#dfdbff'
-              borderRadius={'32px'}
-              padding={'4px 8px'}
-              outlineOffset={'6px'}
-              outline={'transparent solid 3px'}
-              _hover={{bg: '#878787'}}
+            <Image w={{ base: 8 }} src={SpotifyLogo} alt="spotify-logo" />
+            <Text color={"#fff"} fontWeight={600} fontSize={{ md: "18pt" }}>
+              SpotifyProfile
+            </Text>
+          </Flex>
+          <Menu>
+            <MenuButton
+              // borderWidth={"0.13rem"}
+              transition="all 0.2s"
+              // borderRadius={50}
+              px={{ md: 4 }}
+              py={1}
+              _hover={{ color: "brand.900", borderColor: "brand.900" }}
+              _expanded={{ color: "brand.900", borderColor: "brand.900" }}
             >
-              <Avatar
-                src={userData.images[0]?.url}
-                height={8}
-                width={8}
-                borderWidth={2}
-              />
-              <Text fontWeight={600} fontSize={'10pt'}>
-                {userData.display_name}
-              </Text>
-              <ChevronDownIcon
-                // display={{ base: "unset", md: "unset" }}
-                height={18}
-                width={18}
-                borderColor="brand.900"
-                borderWidth={2}
-                borderRadius={50}
-              />
-            </Stack>
-          </MenuButton>
-          <MenuList borderWidth={0} bg={"#000"} py={4}>
-            <MenuItem bg="#000" _hover={{ color: "brand.900" }} mt={2}>
-              <Flex alignItems={"center"} gap={2}>
-                <Icon as={RxDashboard} height={5} width={5} />
-                <Text>Dashboard</Text>
-              </Flex>
-            </MenuItem>
-            <MenuItem
-              mt={2}
-              bg="#000"
-              onClick={logout}
-              _hover={{ color: "brand.900" }}
-            >
-              <Flex alignItems={"center"} gap={2}>
-                <Icon as={AiOutlineLogout} height={5} width={5} />
-                <Text>Logout</Text>
-              </Flex>
-            </MenuItem>
-          </MenuList>
-        </Menu>
+              <Stack
+                direction={"row"}
+                justifyContent="center"
+                alignItems={"center"}
+                color="#400073"
+                bg="#dfdbff"
+                borderRadius={"32px"}
+                padding={"4px 8px"}
+                outlineOffset={"6px"}
+                outline={"transparent solid 3px"}
+                _hover={{ bg: "#878787" }}
+              >
+                <Avatar
+                  src={userData.images[0]?.url}
+                  height={8}
+                  width={8}
+                  borderWidth={2}
+                />
+                <Text fontWeight={600} fontSize={"10pt"}>
+                  {userData.display_name}
+                </Text>
+                <ChevronDownIcon
+                  // display={{ base: "unset", md: "unset" }}
+                  height={18}
+                  width={18}
+                  borderColor="brand.900"
+                  borderWidth={2}
+                  borderRadius={50}
+                />
+              </Stack>
+            </MenuButton>
+            <MenuList borderWidth={0} bg={"#000"} py={4}>
+              <MenuItem bg="#000" _hover={{ color: "brand.900" }} mt={2}>
+                <Flex alignItems={"center"} gap={2}>
+                  <Icon as={RxDashboard} height={5} width={5} />
+                  <Text>Dashboard</Text>
+                </Flex>
+              </MenuItem>
+              <MenuItem
+                mt={2}
+                bg="#000"
+                onClick={logout}
+                _hover={{ color: "brand.900" }}
+              >
+                <Flex alignItems={"center"} gap={2}>
+                  <Icon as={AiOutlineLogout} height={5} width={5} />
+                  <Text>Logout</Text>
+                </Flex>
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
       </Flex>
     </nav>
   );
