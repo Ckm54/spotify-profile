@@ -30,12 +30,12 @@ const Layout = ({ errorElement }: LayoutProps) => {
       <NavBar />
       <Box
         as={"main"}
-        pt={'72px'}
+        pt={"96px"}
         display="flex"
         flexDirection={{ base: "column", md: "row" }}
       >
         <Stack
-          justifyContent={"space-between"}
+          // justifyContent={"space-between"}
           minH={{ md: "90vh" }}
           position={"fixed"}
           zIndex={99}
@@ -170,6 +170,7 @@ const Layout = ({ errorElement }: LayoutProps) => {
                 as={AiFillGithub}
                 w={{ base: 5, md: 6 }}
                 h={{ base: 5, md: 6 }}
+                color={"blue.400"}
               />
               <Text fontSize={{ base: "8pt", md: "12pt" }}>Github link</Text>
             </Flex>
@@ -177,13 +178,14 @@ const Layout = ({ errorElement }: LayoutProps) => {
               alignItems={"center"}
               gap={2}
               cursor="pointer"
-              _hover={{ color: "brand.900" }}
+              _hover={{ color: "red.500" }}
               onClick={logout}
             >
               <Icon
                 as={AiOutlineLogout}
                 w={{ base: 5, md: 6 }}
                 h={{ base: 5, md: 6 }}
+                color={"red.400"}
               />
               <Text fontSize={{ base: "8pt", md: "12pt" }}>Logout</Text>
             </Flex>
