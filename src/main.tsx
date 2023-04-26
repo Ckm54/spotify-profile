@@ -6,13 +6,14 @@ import { RecoilRoot } from "recoil";
 import App from "./App";
 import "./index.css";
 import { theme } from "./theme/theme";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-    }
-  }
+    },
+  },
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <RecoilRoot>
         <ChakraProvider theme={theme}>
           <App />
+          <Analytics />
         </ChakraProvider>
       </RecoilRoot>
     </QueryClientProvider>
