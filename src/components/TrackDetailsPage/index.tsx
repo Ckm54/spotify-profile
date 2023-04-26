@@ -40,10 +40,23 @@ const TrackDetailsPage = (props: TrackDetailsPageProps) => {
     }
   );
 
-  if(!trackDetails) return;
+  if (!trackDetails)
+    return (
+      <Box>
+        <Text>Track details unavailable</Text>
+      </Box>
+    );
 
   return (
-    <>{isLoading ? <Text>Loading...</Text> : <Box><TrackDetailsHeader trackInfo={trackDetails} /></Box>}</>
+    <>
+      {isLoading ? (
+        <Text>Loading...</Text>
+      ) : (
+        <Box>
+          <TrackDetailsHeader trackInfo={trackDetails} />
+        </Box>
+      )}
+    </>
   );
 };
 
