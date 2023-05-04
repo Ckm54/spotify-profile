@@ -44,7 +44,8 @@ app.get("/login", (req: Request, res: Response) => {
   res.cookie(stateKey, state);
 
   // application requests authorization
-  const scope = "user-read-private user-read-email user-follow-read user-top-read playlist-read-private playlist-read-collaborative user-read-recently-played user-follow-read";
+  const scope =
+    "user-read-private user-read-email user-follow-read user-top-read playlist-read-private playlist-read-collaborative user-read-recently-played user-follow-read";
   //  user-read-recently-played user-follow-modify playlist-modify-public";
 
   const params = new URLSearchParams();
@@ -65,7 +66,7 @@ app.get("/callback", (req: Request, res: Response) => {
   const storedState = req.cookies ? req.cookies[stateKey] : null;
 
   const params = new URLSearchParams();
-  params.append("error", "state_mismatch")
+  params.append("error", "state_mismatch");
 
   if (state === null || state !== storedState) {
     res.redirect(`/#${params.toString()}`);
@@ -108,12 +109,10 @@ app.get("/callback", (req: Request, res: Response) => {
         const params = new URLSearchParams();
         params.append("access_token", access_token);
         params.append("refresh_token", refresh_token);
-        res.redirect(
-          `${FRONTEND_URI}/#${params.toString()}`
-        );
+        res.redirect(`${FRONTEND_URI}/#${params.toString()}`);
       } else {
         const params = new URLSearchParams();
-        params.append("error", "invalid token")
+        params.append("error", "invalid token");
         res.redirect(`/#${params.toString()}`);
       }
     });

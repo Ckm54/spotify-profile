@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { TopItemsParams, TopTracks, Track } from "../../../../types";
 import { getTopTracks } from "../../../api/apiCalls";
 import TrackInfo from "./TrackInfo";
+import Loader from "../../../common/Loader";
 
 type Props = {};
 
@@ -14,16 +15,20 @@ const UserTopTracks = (props: Props) => {
 
   const params: TopItemsParams = {
     limit: 5,
-    timeRange: 'long_term'
-  }
+    timeRange: "long_term",
+  };
 
-  const { isLoading } = useQuery(["getTopTracks", params], () => getTopTracks(params), {
-    onSuccess: (data: TopTracks) => {
-      setTopTracks(data);
-    },
-  });
+  const { isLoading } = useQuery(
+    ["getTopTracks", params],
+    () => getTopTracks(params),
+    {
+      onSuccess: (data: TopTracks) => {
+        setTopTracks(data);
+      },
+    }
+  );
 
-  if (isLoading) return <Text>Loading...</Text>;
+  if (isLoading) return <Loader />;
 
   return (
     <Box px={4}>
@@ -31,7 +36,12 @@ const UserTopTracks = (props: Props) => {
         <Text color={"#fff"} fontWeight={600} mb={8}>
           All Time Top tracks
         </Text>
-        <Text color="brand.600" cursor="pointer" _hover={{ color: "#fff" }} onClick={() => navigate('/top-tracks')}>
+        <Text
+          color="brand.600"
+          cursor="pointer"
+          _hover={{ color: "#fff" }}
+          onClick={() => navigate("/top-tracks")}
+        >
           View all
         </Text>
       </Flex>
