@@ -5,9 +5,10 @@ import { Flex, Image, Text } from "@chakra-ui/react";
 const Loader = () => {
   return (
     <Flex
-      position={"fixed"}
-      h={"screen"}
-      background={"rgba(0,0,0,0.7)"}
+      // position={"fixed"}
+      minH={"100vh"}
+      w="100%"
+      background={"rgba(0,0,0,0.3)"}
       flexDirection={"column"}
       alignItems={"center"}
       justifyContent={"center"}
@@ -20,10 +21,9 @@ const Loader = () => {
         objectFit={"contain"}
       />
       <Text
-        mt={20}
+        mt={4}
         className="mt-[20px] font-epilogue font-bold text-[20px] text-center text-white"
       >
-        Transaction is in progress <br />
         Please wait...
       </Text>
     </Flex>
