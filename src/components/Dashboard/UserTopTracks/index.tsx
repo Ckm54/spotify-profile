@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { TopItemsParams, TopTracks, Track } from "../../../../types";
 import { getTopTracks } from "../../../api/apiCalls";
 import TrackInfo from "./TrackInfo";
-import Loader from "../../../common/Loader";
 
 type Props = {};
 
@@ -27,8 +26,6 @@ const UserTopTracks = (props: Props) => {
       },
     }
   );
-
-  if (isLoading) return <Loader />;
 
   return (
     <Box px={4}>

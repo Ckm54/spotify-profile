@@ -1,15 +1,4 @@
-import { useQuery } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { ArtistsFollowed, Playlists, UserProfile } from "../../types";
-import {
-  getFollowing,
-  getUserPlaylists,
-  getUserProfile,
-} from "../api/apiCalls";
-import { userPlaylistsState } from "../atom/PlaylistsAtom";
-import { userProfileState } from "../atom/UserDataAtom";
-import { userFollowedArtistsState } from "../atom/UserFollowedArtists";
 import {
   AlbumInfoPage,
   ArtistProfilePage,
@@ -27,36 +16,6 @@ import ErrorPage from "./ErrorPage";
 type Props = {};
 
 const Home = (props: Props) => {
-  const setUserProfileState = useSetRecoilState(userProfileState);
-  const setArtistsFollowed = useSetRecoilState(userFollowedArtistsState);
-  const [userInfo] = useRecoilState(userProfileState);
-  const setUserPlaylists = useSetRecoilState(userPlaylistsState);
-
-  const userId = userInfo?.id;
-
-  const {} = useQuery("userProfile", () => getUserProfile(), {
-    onSuccess: async (data: UserProfile) => {
-      setUserProfileState(data);
-    },
-  });
-
-  const {} = useQuery("getFollowing", () => getFollowing(), {
-    onSuccess: (data: ArtistsFollowed) => {
-      setArtistsFollowed(data);
-    },
-  });
-
-  const { isLoading } = useQuery(
-    "getPlaylists",
-    () => getUserPlaylists(userId),
-    {
-      onSuccess: (data: Playlists) => {
-        setUserPlaylists(data);
-      },
-      enabled: !!userId,
-    }
-  );
-
   // React.useEffect(() => {
   //   if(userInfo.id !== '') {
   //     queryClient.refetchQueries({ queryKey: ['getPlaylists']})
