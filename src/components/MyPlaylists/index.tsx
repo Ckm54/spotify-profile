@@ -14,7 +14,7 @@ const MyPlaylists = (props: Props) => {
     <Box px={4}>
       <Flex py={4} gap={4}>
         <Text fontWeight={600}>My Playlists</Text>
-        <Text color='brand.600'>Total: ({userPlaylists.total})</Text>
+        <Text color="brand.600">Total: ({userPlaylists.total})</Text>
       </Flex>
 
       <Grid

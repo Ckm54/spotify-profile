@@ -6,6 +6,7 @@ import { RecentPlays, RecentTrack } from "../../../types";
 import { getRecentlyPlayedTracks } from "../../api/apiCalls";
 import { recentlyPlayedTracksState } from "../../atom/TopTracksAtom";
 import TrackInfo from "../Dashboard/UserTopTracks/TrackInfo";
+import Loader from "../../common/Loader";
 
 type Props = {};
 
@@ -23,18 +24,16 @@ const MyRecentPlays = (props: Props) => {
       },
     }
   );
+  if (isLoading) return <Loader />;
+
   return (
     <Box px={8}>
       <Text py={4} fontWeight={600}>
         Recently Played Tracks
       </Text>
-      {isLoading ? (
-        <Text>Loading...</Text>
-      ) : (
-        recentTracks.items.map((track: RecentTrack, index: number) => (
-          <TrackInfo track={track.track} index={index + 1} />
-        ))
-      )}
+      {recentTracks.items.map((track: RecentTrack, index: number) => (
+        <TrackInfo track={track.track} index={index + 1} />
+      ))}
     </Box>
   );
 };

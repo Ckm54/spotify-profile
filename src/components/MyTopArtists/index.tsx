@@ -12,6 +12,7 @@ import {
 } from "../../atom/TopArtistsAtom";
 import Artist from "../Dashboard/UserTopArtists/Artist";
 import TopArtistInfo from "./TopArtistInfo";
+import Loader from "../../common/Loader";
 
 interface ActiveTab {
   name: "allTime" | "medium" | "short";
@@ -32,8 +33,6 @@ const MyTopArtists = (props: Props) => {
   const [shortTermTopArtists, setShortTermTopArtists] = useRecoilState(
     shortTermArtistsState
   );
-
-  const navigate = useNavigate();
 
   const longTermParams: TopItemsParams = {
     limit: 30,
@@ -60,7 +59,7 @@ const MyTopArtists = (props: Props) => {
     }
   );
 
-  const { isLoading } = useQuery(
+  const { isLoading: mediumTermLoading } = useQuery(
     ["getMediumTermTopArtists", mediumTermParams],
     () => getTopArtists(mediumTermParams),
     {
@@ -79,6 +78,9 @@ const MyTopArtists = (props: Props) => {
       },
     }
   );
+
+  if (mediumTermLoading || loadingShortTerm || longTermLoading)
+    return <Loader />;
 
   return (
     <Box px={{ base: 4, md: 8 }}>
@@ -128,11 +130,13 @@ const MyTopArtists = (props: Props) => {
         </Flex>
       </Flex>
 
-      {isLoading || loadingShortTerm || longTermLoading ? (
-        <Text>Loading...</Text>
-      ) : (
+      {
         <Grid
-          templateColumns={{base: "repeat(2, 1fr)", md: "repeat(3, 1fr)", xl: "repeat(7, 1fr)" }}
+          templateColumns={{
+            base: "repeat(2, 1fr)",
+            md: "repeat(3, 1fr)",
+            xl: "repeat(7, 1fr)",
+          }}
           gap={{ base: 4, xl: 2 }}
         >
           {activeTab.name === "allTime"
@@ -167,7 +171,7 @@ const MyTopArtists = (props: Props) => {
                 </GridItem>
               ))}
         </Grid>
-      )}
+      }
     </Box>
   );
 };

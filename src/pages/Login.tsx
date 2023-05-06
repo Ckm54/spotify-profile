@@ -8,13 +8,10 @@ const LOGIN_URI =
 
 type Props = {};
 
-const clientID = import.meta.env.VITE_CLIENT_ID;
-
 const Login = (props: Props) => {
-
   return (
     <Stack
-      as={'section'}
+      as={"section"}
       justifyContent={"center"}
       alignItems="center"
       minHeight={"100vh"}

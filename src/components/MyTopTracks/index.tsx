@@ -23,6 +23,7 @@ import {
 } from "../../atom/TopTracksAtom";
 import Artist from "../Dashboard/UserTopArtists/Artist";
 import TrackInfo from "../Dashboard/UserTopTracks/TrackInfo";
+import Loader from "../../common/Loader";
 
 interface ActiveTab {
   name: "allTime" | "medium" | "short";
@@ -60,7 +61,7 @@ const MyTopTracks = (props: Props) => {
     timeRange: "short_term",
   };
 
-  const { isLoading } = useQuery(
+  const { isLoading: longTermTopLoading } = useQuery(
     ["getLongTermTopTracks", longTermParams],
     () => getTopTracks(longTermParams),
     {
@@ -70,7 +71,7 @@ const MyTopTracks = (props: Props) => {
     }
   );
 
-  const {} = useQuery(
+  const { isLoading: mediumTermTopLoading } = useQuery(
     ["getMediumTermTopTracks", mediumTermParams],
     () => getTopTracks(mediumTermParams),
     {
@@ -80,7 +81,7 @@ const MyTopTracks = (props: Props) => {
     }
   );
 
-  const {} = useQuery(
+  const { isLoading: shortTermTopLoading } = useQuery(
     ["getShortTermTopTracks", shortTermParams],
     () => getTopTracks(shortTermParams),
     {
@@ -89,6 +90,9 @@ const MyTopTracks = (props: Props) => {
       },
     }
   );
+
+  if (longTermTopLoading || mediumTermTopLoading || shortTermTopLoading)
+    return <Loader />;
 
   return (
     <Box px={{ base: 4, md: 8 }}>
@@ -138,23 +142,39 @@ const MyTopTracks = (props: Props) => {
         </Flex>
       </Flex>
 
-      {isLoading ? (
-        <Text>Loading...</Text>
-      ) : (
+      {
         <Grid>
           {activeTab.name === "allTime"
-            ? longTermTopTracks?.items.map((trackInfo: Track, index: number) => (
-                  <TrackInfo track={trackInfo} index={index + 1} key={trackInfo.id}/>
-              ))
+            ? longTermTopTracks?.items.map(
+                (trackInfo: Track, index: number) => (
+                  <TrackInfo
+                    track={trackInfo}
+                    index={index + 1}
+                    key={trackInfo.id}
+                  />
+                )
+              )
             : activeTab.name === "medium"
-            ? mediumTermTopTracks?.items.map((trackInfo: Track, index: number) => (
-                  <TrackInfo track={trackInfo} index={index + 1} key={trackInfo.id}/>
-              ))
-            : shortTermTopTracks?.items.map((trackInfo: Track, index: number) => (
-                  <TrackInfo track={trackInfo} index={index + 1} key={trackInfo.id}/>
-              ))}
+            ? mediumTermTopTracks?.items.map(
+                (trackInfo: Track, index: number) => (
+                  <TrackInfo
+                    track={trackInfo}
+                    index={index + 1}
+                    key={trackInfo.id}
+                  />
+                )
+              )
+            : shortTermTopTracks?.items.map(
+                (trackInfo: Track, index: number) => (
+                  <TrackInfo
+                    track={trackInfo}
+                    index={index + 1}
+                    key={trackInfo.id}
+                  />
+                )
+              )}
         </Grid>
-      )}
+      }
     </Box>
   );
 };
