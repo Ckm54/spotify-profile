@@ -18,7 +18,6 @@ type LayoutProps = {
 };
 
 //**********************HIGHER ORDER COMPONENT TO LAYOUT THE GENERAL APPLICATION'S UI VISIBLE ON ALL PAGES */
-
 const Layout = ({ errorElement }: LayoutProps) => {
   const [userInfo] = useRecoilState(userProfileState);
   const [userPlaylists] = useRecoilState(userPlaylistsState);
